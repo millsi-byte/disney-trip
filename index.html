@@ -751,33 +751,34 @@ function render(){
     // ── PARK RESERVATIONS ────────────────────────────────────────────
     out+="<div class='pg-title'>Trip Schedule</div><div class='pg-sub'>Park reservations \u00b7 dining plan \u00b7 all days</div>";
     out+="<div class='llp-card'>"
-        +"<div class='llp-hd'><div style='font-size:16px'>\uD83C\uDFAB</div>"
-        +"<div class='llp-name'>Park Reservations</div></div>"
+        +"<div class='llp-hd' style='background:var(--ink)'>"
+        +"<div style='font-size:18px'>\uD83C\uDFAB</div>"
+        +"<div class='llp-name' style='color:#fff'>Park Reservations</div></div>"
         +"<div style='border-top:1px solid var(--border)'>";
     for(var i=0;i<DAYS.length;i++){
       var d=DAYS[i], rp=PARKS[d.res];
       out+="<div class='din-row'>"
           +"<div style='display:flex;align-items:center;gap:8px;min-width:110px'>"
-          +"<div style='width:10px;height:10px;border-radius:50%;background:"+rp.color+";flex-shrink:0'></div>"
-          +"<div style='font-size:13px;font-weight:700;color:var(--muted)'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>"
-          +"<div><div class='din-name'>"+rp.name+"</div>"
+          +"<div style='width:12px;height:12px;border-radius:50%;background:"+rp.color+";flex-shrink:0'></div>"
+          +"<div style='font-size:14px;font-weight:700;color:var(--ink)'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>"
+          +"<div><div class='din-name' style='color:"+rp.color+";font-weight:700'>"+rp.name+"</div>"
           +"<div class='din-time'>Confirmed</div></div></div>";
     }
     out+="</div></div>";
 
     // ── DINING PLAN ──────────────────────────────────────────────────
     out+="<div class='llp-card'>"
-        +"<div class='llp-hd'><div style='font-size:16px'>\uD83C\uDF7D</div>"
-        +"<div class='llp-name'>Dining Plan</div></div>"
+        +"<div class='llp-hd' style='background:#92400E'>"
+        +"<div style='font-size:18px'>\uD83C\uDF7D</div>"
+        +"<div class='llp-name' style='color:#fff'>Dining Plan</div></div>"
         +"<div style='border-top:1px solid var(--border)'>";
     for(var i=0;i<DAYS.length;i++){
       var d=DAYS[i];
       if(d.din.length===0) continue;
       var rp=PARKS[d.res];
-      out+="<div class='sch-day-hd'>"
-          +"<div class='sch-day-dot' style='background:"+rp.color+"'></div>"
-          +"<div class='sch-day-name'>"+rp.name+"</div>"
-          +"<div class='sch-day-date'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>";
+      out+="<div class='sch-day-hd' style='background:"+rp.color+"'>"
+          +"<div class='sch-day-name' style='color:#fff'>"+rp.name+"</div>"
+          +"<div class='sch-day-date' style='color:rgba(255,255,255,.85)'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>";
       for(var j=0;j<d.din.length;j++){
         var dn=d.din[j];
         out+="<div class='din-row'>"
@@ -793,8 +794,9 @@ function render(){
     for(var pi=0;pi<LL_PARKS.length;pi++){
       var lp=LL_PARKS[pi];
       out+="<div class='llp-card'>"
-          +"<div class='llp-hd'><div class='llp-dot' style='background:"+lp.clr+"'></div>"
-          +"<div class='llp-name'>"+lp.nm+"</div><div class='llp-bd'>"+lp.bd+"</div></div>"
+          +"<div class='llp-hd' style='background:"+lp.clr+"'>"
+          +"<div class='llp-name' style='color:#fff;font-size:17px'>"+lp.nm+"</div>"
+          +"<div class='llp-bd' style='color:rgba(255,255,255,.85)'>"+lp.bd+"</div></div>"
           +"<div style='border-top:1px solid var(--border)'>";
       for(var j=0;j<lp.items.length;j++){
         var it=lp.items[j];
