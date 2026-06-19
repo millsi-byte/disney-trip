@@ -84,7 +84,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .t-text{font-size:18px;line-height:1.45}
 .crit{font-size:12px;font-weight:700;padding:3px 9px;border-radius:10px;margin-left:6px;background:#FEE2E2;color:#991B1B;vertical-align:middle;white-space:nowrap}
 /* Full details */
-.detail-block{padding:12px 15px;font-size:14px;line-height:1.6;color:#374151;border-bottom:1px solid var(--border)}
+.detail-block{padding:12px 15px;font-size:18px;line-height:1.7;color:#374151;border-bottom:1px solid var(--border)}
 .detail-block:last-child{border-bottom:none}
 .detail-block p{margin-bottom:8px}
 .detail-block p:last-child{margin-bottom:0}
@@ -106,7 +106,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 /* Dining */
 .din-row{display:flex;gap:12px;align-items:center;padding:11px 15px;border-bottom:1px solid var(--border)}
 .din-row:last-child{border-bottom:none}
-.meal{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#E8EDF5;color:var(--ink);padding:5px 10px;border-radius:6px;min-width:70px;text-align:center;flex-shrink:0}
+.meal{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#E8EDF5;color:var(--ink);padding:5px 10px;border-radius:6px;width:90px;text-align:center;flex-shrink:0}
 .din-name{font-size:18px;font-weight:600}
 .din-time{font-size:16px;color:var(--muted);margin-top:2px}
 /* Shows */
@@ -217,7 +217,7 @@ var DAYS = [
     shows:[], ll:[], roll:[],
     din:[
       {m:"Lunch",  n:"Hollywood Brown Derby Lounge", t:"~12:30 PM"},
-      {m:"Dinner", n:"Bourbon Steak",                t:"7:00 PM"}
+      {m:"Dinner", n:"Bourbon Steak",                t:"7:00 PM", loc:"Non-Park"}
     ]
   },
 
@@ -290,7 +290,7 @@ var DAYS = [
     din:[
       {m:"Breakfast", n:"Les Halles — France Pavilion", t:"9:00 AM"},
       {m:"Lunch",     n:"World Showcase",               t:"~12:45 PM"},
-      {m:"Dinner",    n:"Cake Bake",                    t:"TBD"}
+      {m:"Dinner",    n:"Cake Bake",                    t:"TBD",     loc:"Non-Park"}
     ]
   },
 
@@ -330,8 +330,8 @@ var DAYS = [
       "After Toy Story Mania → book nighttime re-ride"
     ],
     din:[
-      {m:"Lunch",  n:"Cake Bake",     t:"~12:30 PM"},
-      {m:"Dinner", n:"Summer House?", t:"TBD"}
+      {m:"Lunch",  n:"Cake Bake",     t:"~12:30 PM", loc:"Non-Park"},
+      {m:"Dinner", n:"Summer House?", t:"TBD",        loc:"Non-Park"}
     ]
   },
 
@@ -722,7 +722,9 @@ function render(){
         for(var j=0;j<day.din.length;j++){
           var d2=day.din[j];
           out+="<div class='din-row'><div class='meal'>"+d2.m+"</div>"
-              +"<div><div class='din-name'>"+d2.n+"</div><div class='din-time'>"+d2.t+"</div></div></div>";
+              +"<div style='flex:1'><div class='din-name'>"+d2.n+"</div><div class='din-time'>"+d2.t+"</div></div>"
+              +(d2.loc?"<div style='font-size:12px;font-weight:700;color:#fff;background:#6B7280;padding:3px 8px;border-radius:8px;white-space:nowrap;align-self:center'>"+d2.loc+"</div>":"")
+              +"</div>";
         }
         out+="</div>";
       }
@@ -783,8 +785,10 @@ function render(){
         var dn=d.din[j];
         out+="<div class='din-row'>"
             +"<div class='meal'>"+dn.m+"</div>"
-            +"<div><div class='din-name'>"+dn.n+"</div>"
-            +"<div class='din-time'>"+dn.t+"</div></div></div>";
+            +"<div style='flex:1'><div class='din-name'>"+dn.n+"</div>"
+            +"<div class='din-time'>"+dn.t+"</div></div>"
+            +(dn.loc?"<div style='font-size:12px;font-weight:700;color:#fff;background:#6B7280;padding:3px 8px;border-radius:8px;white-space:nowrap;align-self:center'>"+dn.loc+"</div>":"")
+            +"</div>";
       }
     }
     out+="</div></div>";
