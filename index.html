@@ -145,12 +145,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 .sch-day-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .sch-day-name{font-size:14px;font-weight:700}
 .sch-day-date{font-size:12px;color:var(--muted);margin-left:auto}
+.qty-wrap{display:flex;align-items:center;gap:5px;margin-left:auto;flex-shrink:0}
+.qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);background:var(--cream);font-size:15px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;padding:0}
+.qty-btn:active{background:var(--border)}
+.qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center}
+.del-btn{width:24px;height:24px;border-radius:50%;border:none;background:transparent;color:#CBD5E1;font-size:18px;cursor:pointer;flex-shrink:0;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
+.del-btn:active{color:var(--hs)}
+.add-row{display:flex;align-items:center;gap:8px;padding:10px 15px;border-top:1px solid var(--border)}
+.add-inp{flex:1;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;background:var(--cream);color:var(--ink);outline:none;min-width:0}
+.add-inp:focus{border-color:var(--ink)}
+.add-ok{padding:7px 12px;background:var(--ink);color:white;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
+.add-cancel{padding:7px 10px;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer}
+.add-link{font-size:12px;color:var(--ep);background:none;border:none;cursor:pointer;padding:10px 15px;text-align:left;width:100%;border-top:1px dashed var(--border);font-weight:600}
+.plan-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.reset-lnk{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+.td-when{font-size:11px;color:var(--muted);white-space:nowrap;margin-left:auto;padding-right:4px}
 </style>
 </head>
 <body>
 <div class="hdr">
   <div class="hdr-title">DVC — July 2026</div>
-  <div class="hdr-sub">Boardwalk Villa &nbsp;·&nbsp; Jul 14–19</div>
+  <div class="hdr-sub">Boardwalk Villa &nbsp;·&nbsp; Jul 14–19 &nbsp;·&nbsp; Res #619078381899</div>
 </div>
 <div id="strip"></div>
 <div id="app"></div>
@@ -169,7 +184,7 @@ var DAYS = [
   { date:"14", dl:"Tue", park:"trv",
     badges:["Locker Delivered to Room","Activate APs"],
     alert:null,
-    res:"ep", crowd: null, hours: null,
+    res:"ep", crowd: 3, hours: "8:30 AM – 9:00 PM",
     flight:{
       num:"SW 4657 / 3658", conf:"CCSJ4H",
       dep:"5:45 AM", depApt:"BOS", depCity:"Boston",
@@ -190,7 +205,7 @@ var DAYS = [
   { date:"15", dl:"Wed", park:"hs",
     badges:["Relaxed Day"],
     alert: null,
-    res:"hs", crowd: null, hours: null,
+    res:"hs", crowd: 3, hours: "8:30 AM – 9:00 PM",
     flight: null,
     itin:[
       {t:"11:00 AM", x:"Baseline Tap House"},
@@ -210,7 +225,7 @@ var DAYS = [
   { date:"16", dl:"Thu", park:"mk",
     badges:["Early Entry 8:30 AM","Multi Pass Day"],
     alert:"7:45 AM at the tap stiles. Don't slip on this — the whole morning depends on it.",
-    res:"mk", crowd: null, hours: null,
+    res:"mk", crowd: 3, hours: "8:30 AM – 10:00 PM",
     flight: null,
     itin:[
       {t:"7:45 AM",  x:"At tap stiles",                                        crit:"⚡ CRITICAL"},
@@ -231,7 +246,7 @@ var DAYS = [
     strategy:"By roughly 1:00 PM the full must-do list is done: Tiana's, Thunder, Space, Tron, Jungle, Pirates, Tiki, Haunted, Small World — plus Buzz from the nice-to-haves. That's 10 rides in a morning with minimal waiting, all driven by the rolling re-book engine.\n\nMonorail Crawl in the evening: ride the resort monorail and hop off at Polynesian, Grand Floridian, and Contemporary for a drink at each before looping back to MK for the fireworks and your two banked nighttime re-rides.\n\nHayley and Cian should also buy Multi Pass on Jul 9 @ 7 AM. Everyone buys Single Pass for Tron at the same time.\n\nIf Tron Single Pass sells out before 7 AM purchase: Tron's standby wait drops during fireworks or the final hour, but you'd trade fireworks for it. Keep the Single Pass.\n\nFree look at the MK no-Multi-Pass strategy is in the Lightning tab under 'MK No Multi Pass' if needed.",
     shows:[
       {n:"MK Starlight",        t:"8:30 & 10:30 PM"},
-      {n:"Happily Ever After",  t:"9:30 PM"}
+      {n:"Happily Ever After",  t:"10:00 PM"}
     ],
     ll:[
       {ty:"sp",  r:"Tron",                    w:"~10:00–10:30 AM", bd:"Jul 9 @ 7:00 AM"},
@@ -251,7 +266,7 @@ var DAYS = [
   { date:"17", dl:"Fri", park:"ep",
     badges:["Single Pass Day"],
     alert: null,
-    res:"ep", crowd: null, hours: null,
+    res:"ep", crowd: 2, hours: "8:30 AM – 9:00 PM",
     flight: null,
     itin:[
       {t:"8:20 AM",  x:"Walk BoardWalk → International Gateway"},
@@ -283,7 +298,7 @@ var DAYS = [
   { date:"18", dl:"Sat", park:"hs",
     badges:["Early Entry 8:30 AM","Multi Pass Day"],
     alert:"Hayley &amp; Cian also buy Multi Pass on Jul 11 @ 7 AM. Rise is optional — decide before booking day.",
-    res:"hs", crowd: null, hours: null,
+    res:"hs", crowd: 3, hours: "8:30 AM – 9:00 PM",
     flight: null,
     itin:[
       {t:"8:00 AM",  x:"Arrive, tap in for 8:30 Early Entry"},
@@ -300,7 +315,7 @@ var DAYS = [
     strategy:"Muppets coaster, Tower, and Rise all share the Sunset Boulevard / Echo Lake real estate — very little backtracking in the morning. The whole must-do list (Muppets, Tower, Toy Story, Star Tours, plus Slinky and Rise if grabbed) is done by noon.\n\nKeep using the rolling re-book engine after Toy Story Mania — on a Multi Pass day you can keep stacking one-at-a-time bookings. If the group wants to re-ride the coaster or Tower at night, book the window midday for an evening slot.\n\nHS is a short walk or boat ride from the BoardWalk, so the mid-day break and return trip are easy. Boat from Epcot/Hollywood Studios dock takes about 10 minutes.\n\nNight shows on Sunset Boulevard: stake a spot early or ride during the show when standby waits drop. Fantasmic has two showings — if first is crowded, second showing is often easier to get into.",
     shows:[
       {n:"Movie Magic",                   t:"8:30 PM"},
-      {n:"Fantasmic!",                    t:"8:30 & 10:00 PM"},
+      {n:"Fantasmic!",                    t:"9:05 PM"},
       {n:"Wonderful World of Animation",  t:"9:00 PM"}
     ],
     ll:[
@@ -324,12 +339,18 @@ var DAYS = [
   { date:"19", dl:"Sun", park:"ak",
     badges:["Drop Locker at Front Desk","Last Day"],
     alert: null,
-    res:"ak", crowd: null, hours: null,
-    flight: null,
+    res:"ak", crowd: 3, hours: "7:30 AM – 6:00 PM",
+    flight:{
+      num:"WN 1482", conf:"CC3FGY",
+      dep:"7:55 AM", depApt:"MCO", depCity:"Orlando",
+      arr:"10:50 AM", arrApt:"MHT", arrCity:"Manchester"
+    },
     itin:[
       {t:"Morning",   x:"Drop Owners Locker at front desk"},
       {t:"Rope Drop", x:"Animal Kingdom"},
-      {t:"Afternoon", x:"Final rides · head to MCO"}
+      {t:"Afternoon", x:"Head to MCO"},
+      {t:"7:55 AM",   x:"Depart MCO — WN 1482", crit:"✈️ FLIGHT"},
+      {t:"10:50 AM",  x:"Arrive MHT"}
     ],
     strategy: null,
     shows:[], ll:[], roll:[],
@@ -337,27 +358,128 @@ var DAYS = [
   }
 ];
 
-var PACKING = [
-  { cat:"Clothes",   items:[{n:"Shorts"},{n:"T-Shirts"},{n:"Bathing Suits"},{n:"Sneakers"},{n:"Crocs",l:true},{n:"Sweat Shirts",l:true},{n:"PJs"},{n:"Belt"}]},
-  { cat:"Electronics", items:[{n:"AirPods"},{n:"Phone"},{n:"Power Strip",l:true},{n:"Roku + Cables",l:true},{n:"Bluetooth Speaker",l:true},{n:"Portable Charger",l:true}]},
-  { cat:"Misc", items:[{n:"Ponchos",l:true},{n:"Sunglasses"},{n:"Pins & Lanyards",l:true},{n:"Sunblock",l:true},{n:"Cash for Tips"},{n:"Visor",l:true},{n:"Hat",l:true}]},
-  { cat:"Paperwork", items:[{n:"Annual Pass Cards"},{n:"Magic Bands"},{n:"Boarding Passes"},{n:"Gift Cards"},{n:"Credit Cards"},{n:"DVC Cards"}]},
-  { cat:"Health", items:[{n:"Creon"},{n:"Pepcid AC"},{n:"Advil"},{n:"Pepto / Mylanta"},{n:"Tylenol"},{n:"Tums"},{n:"Chapstick"},{n:"Gax-X"}]}
+var PACKING_TEMPLATE = [
+  { cat:"Clothes", items:[
+    {n:"Underwear",      qty:7, l:false, done:false},
+    {n:"Socks",          qty:7, l:false, done:false},
+    {n:"Shorts",         qty:6, l:false, done:false},
+    {n:"T-Shirts",       qty:7, l:false, done:false},
+    {n:"Jeans",          qty:1, l:false, done:false},
+    {n:"Short Sleeves",  qty:2, l:false, done:false},
+    {n:"Long Sleeves",   qty:1, l:false, done:false},
+    {n:"Dress Shirts",   qty:1, l:false, done:false},
+    {n:"Belt",           qty:1, l:false, done:false},
+    {n:"Bathing Suits",  qty:2, l:false, done:false},
+    {n:"PJs",            qty:1, l:false, done:false},
+    {n:"Slippers",       qty:1, l:false, done:false},
+    {n:"Swim Shoes",     qty:1, l:false, done:false},
+    {n:"Sneakers",       qty:1, l:false, done:false},
+    {n:"Sweat Shirts",   qty:0, l:true,  done:false},
+    {n:"Crocs",          qty:0, l:true,  done:false}
+  ]},
+  { cat:"Electronics", items:[
+    {n:"AirPods",        qty:1, l:false, done:false},
+    {n:"Phone",          qty:1, l:false, done:false},
+    {n:"Watch",          qty:1, l:false, done:false},
+    {n:"Watch Cable",    qty:1, l:false, done:false},
+    {n:"Lightning Cables",qty:2,l:false, done:false},
+    {n:"Portable Charger",qty:1,l:false, done:false},
+    {n:"Power Strip",    qty:0, l:true,  done:false},
+    {n:"Roku + Cables",  qty:0, l:true,  done:false},
+    {n:"Bluetooth Speaker",qty:0,l:true, done:false}
+  ]},
+  { cat:"Misc", items:[
+    {n:"Sunglasses",     qty:1, l:false, done:false},
+    {n:"Cash for Tips",  qty:1, l:false, done:false},
+    {n:"Gum for Plane",  qty:1, l:false, done:false},
+    {n:"Yeti",           qty:1, l:false, done:false},
+    {n:"Over the Door Rack",qty:0,l:true,done:false},
+    {n:"Ear Swim Plugs", qty:0, l:true,  done:false},
+    {n:"Pins / Lanyards",qty:0, l:true,  done:false},
+    {n:"Heating Pad",    qty:0, l:true,  done:false},
+    {n:"Visor",          qty:0, l:true,  done:false},
+    {n:"Hat",            qty:0, l:true,  done:false},
+    {n:"Ice Packs",      qty:0, l:true,  done:false},
+    {n:"Pool Bag",       qty:0, l:true,  done:false},
+    {n:"Ponchos",        qty:0, l:true,  done:false},
+    {n:"Sunblock",       qty:0, l:true,  done:false}
+  ]},
+  { cat:"Paperwork", items:[
+    {n:"Annual Pass Card",qty:1,l:false, done:false},
+    {n:"Magic Bands",    qty:1, l:false, done:false},
+    {n:"Boarding Passes",qty:1, l:false, done:false},
+    {n:"Gift Cards",     qty:1, l:false, done:false},
+    {n:"Credit Cards",   qty:3, l:false, done:false},
+    {n:"Insurance Card", qty:1, l:false, done:false},
+    {n:"DVC Cards",      qty:1, l:false, done:false}
+  ]},
+  { cat:"Health", items:[
+    {n:"Losartan",       qty:1, l:false, done:false},
+    {n:"Amdolpine",      qty:1, l:false, done:false},
+    {n:"Creon",          qty:1, l:false, done:false},
+    {n:"Pepcid AC",      qty:1, l:false, done:false},
+    {n:"Advil",          qty:1, l:false, done:false},
+    {n:"Tylenol",        qty:1, l:false, done:false},
+    {n:"Excedrin",       qty:1, l:false, done:false},
+    {n:"Mylanta",        qty:1, l:false, done:false},
+    {n:"Pepto",          qty:1, l:false, done:false},
+    {n:"Travel Tums",    qty:1, l:false, done:false},
+    {n:"Gax-X",          qty:1, l:false, done:false},
+    {n:"Sudafed",        qty:1, l:false, done:false},
+    {n:"Benedryl",       qty:1, l:false, done:false},
+    {n:"Chapstick",      qty:1, l:false, done:false},
+    {n:"Pill Holders",   qty:2, l:false, done:false},
+    {n:"Travel Tissues", qty:1, l:false, done:false},
+    {n:"Tums",           qty:0, l:true,  done:false},
+    {n:"Bandaids",       qty:0, l:true,  done:false},
+    {n:"Thermometer",    qty:0, l:true,  done:false}
+  ]},
+  { cat:"Toiletries", items:[
+    {n:"Beard Trimmer",  qty:1, l:false, done:false},
+    {n:"Deodorant",      qty:0, l:true,  done:false},
+    {n:"Toothbrush",     qty:0, l:true,  done:false},
+    {n:"Toothpaste",     qty:0, l:true,  done:false},
+    {n:"Mouthwash",      qty:0, l:true,  done:false},
+    {n:"Hair Gel",       qty:0, l:true,  done:false},
+    {n:"Comb",           qty:0, l:true,  done:false},
+    {n:"Razors",         qty:0, l:true,  done:false},
+    {n:"Shaving Cream",  qty:0, l:true,  done:false},
+    {n:"Gold Bond",      qty:0, l:true,  done:false},
+    {n:"Qtips",          qty:0, l:true,  done:false},
+    {n:"Nail Clippers",  qty:0, l:true,  done:false},
+    {n:"Lint Roller",    qty:0, l:true,  done:false},
+    {n:"Salonpas",       qty:0, l:true,  done:false},
+    {n:"Laundry Bag",    qty:0, l:true,  done:false},
+    {n:"Wrinkle Release",qty:0, l:true,  done:false}
+  ]}
 ];
 
-var TODOS = [
-  {n:"Book Hotel",                              s:"Done"},
-  {n:"Book Flight",                             s:"Done"},
-  {n:"Park Tickets",                            s:"Done"},
-  {n:"Park Reservations",                       s:"Done"},
-  {n:"Dining Reservations",                     s:"Done"},
-  {n:"Room Request",                            s:"Done"},
-  {n:"Owners Locker",                           s:"Done"},
-  {n:"Resort Online Check-in",                  s:"Done"},
-  {n:"Airline Online Check-in / Boarding Pass", s:""},
-  {n:"Magic Bands",                             s:"N/A"},
-  {n:"Order Groceries",                         s:"N/A"}
+var TODO_TEMPLATE = [
+  {n:"Book Hotel",                              when:"11 months",  done:true,  na:false},
+  {n:"Change Hotels",                           when:"7 months",   done:false, na:true},
+  {n:"Book Flight",                             when:"",           done:true,  na:false},
+  {n:"Park Tickets",                            when:"",           done:true,  na:false},
+  {n:"Park Reservations",                       when:"",           done:true,  na:false},
+  {n:"Rental Car / Transportation",             when:"",           done:false, na:true},
+  {n:"Dining Reservations",                     when:"180 days",   done:true,  na:false},
+  {n:"Magic Bands",                             when:"30 days",    done:false, na:true},
+  {n:"Room Request",                            when:"30 days",    done:true,  na:false},
+  {n:"Order Groceries",                         when:"",           done:false, na:true},
+  {n:"Owners Locker",                           when:"",           done:true,  na:false},
+  {n:"Resort Online Check-in",                  when:"",           done:true,  na:false},
+  {n:"Airline Online Check-in / Boarding Pass", when:"Day before", done:false, na:false}
 ];
+
+// Load from localStorage or clone template
+var PKDATA = (function(){
+  try{ var s=localStorage.getItem('dvc_pk_26'); if(s) return JSON.parse(s); }catch(e){}
+  return JSON.parse(JSON.stringify(PACKING_TEMPLATE));
+})();
+var TDDATA = (function(){
+  try{ var s=localStorage.getItem('dvc_td_26'); if(s) return JSON.parse(s); }catch(e){}
+  return JSON.parse(JSON.stringify(TODO_TEMPLATE));
+})();
+
 
 var LL_PARKS = [
   { nm:"Magic Kingdom", clr:"#6B4FA0", bd:"Jul 9 @ 7:00 AM ET",
@@ -390,6 +512,8 @@ var TAB = "days";
 var OPEN = {flight:true, res:false, itin:true, details:false, ll:false, din:false, shows:false};
 var CHK  = {};
 var PLAN = "packing";
+var ADDING_CAT = -1;
+var ADDING_TODO = false;
 
 function sd(i){ AD=i; OPEN={flight:true,res:false,itin:true,details:false,ll:false,din:false,shows:false}; render(); }
 function st(t){ TAB=t; render(); }
@@ -397,7 +521,29 @@ function tg(k){ OPEN[k]=!OPEN[k]; render(); }
 function tc(k){ CHK[k]=!CHK[k]; render(); }
 function sp(p){ PLAN=p; render(); }
 
-function tagCls(ty){ return ty==="sp"?"sp":ty==="mp1"?"mp1":"mp2"; }
+function savePK(){ try{localStorage.setItem('dvc_pk_26',JSON.stringify(PKDATA));}catch(e){} }
+function pk_chk(c,i){ PKDATA[c].items[i].done=!PKDATA[c].items[i].done; savePK(); render(); }
+function pk_inc(c,i){ PKDATA[c].items[i].qty++; savePK(); render(); }
+function pk_dec(c,i){ if(PKDATA[c].items[i].qty>1) PKDATA[c].items[i].qty--; savePK(); render(); }
+function pk_del(c,i){ PKDATA[c].items.splice(i,1); savePK(); render(); }
+function pk_add(c){ ADDING_CAT=c; render(); setTimeout(function(){var el=document.getElementById('pk-inp');if(el)el.focus();},50); }
+function pk_ok(c){ var el=document.getElementById('pk-inp'); if(!el||!el.value.trim()) return; PKDATA[c].items.push({n:el.value.trim(),qty:1,l:false,done:false}); ADDING_CAT=-1; savePK(); render(); }
+function pk_cancel(){ ADDING_CAT=-1; render(); }
+function pk_reset(){ if(confirm('Reset packing list to defaults?')){PKDATA=JSON.parse(JSON.stringify(PACKING_TEMPLATE));savePK();render();} }
+function pk_inp_key(e,c){ if(e.key==='Enter') pk_ok(c); if(e.key==='Escape') pk_cancel(); }
+
+function saveTD(){ try{localStorage.setItem('dvc_td_26',JSON.stringify(TDDATA));}catch(e){} }
+function td_chk(i){ if(!TDDATA[i].na){TDDATA[i].done=!TDDATA[i].done; saveTD(); render();} }
+function td_na(i){ TDDATA[i].na=!TDDATA[i].na; if(TDDATA[i].na) TDDATA[i].done=false; saveTD(); render(); }
+function td_del(i){ TDDATA.splice(i,1); saveTD(); render(); }
+function td_add(){ ADDING_TODO=true; render(); setTimeout(function(){var el=document.getElementById('td-inp');if(el)el.focus();},50); }
+function td_ok(){ var el=document.getElementById('td-inp'); if(!el||!el.value.trim()) return; TDDATA.push({n:el.value.trim(),when:'',done:false,na:false}); ADDING_TODO=false; saveTD(); render(); }
+function td_cancel(){ ADDING_TODO=false; render(); }
+function td_reset(){ if(confirm('Reset to-do list to defaults?')){TDDATA=JSON.parse(JSON.stringify(TODO_TEMPLATE));saveTD();render();} }
+function td_inp_key(e){ if(e.key==='Enter') td_ok(); if(e.key==='Escape') td_cancel(); }
+
+function pk_save_template(){ if(confirm('Save current list as your template for future trips?')){localStorage.setItem('dvc_pk_master',JSON.stringify(PKDATA));alert('Template saved!');} }
+function td_save_template(){ if(confirm('Save current to-do list as your template for future trips?')){localStorage.setItem('dvc_td_master',JSON.stringify(TDDATA));alert('Template saved!');} }
 function tagLbl(ty){ return ty==="sp"?"Single Pass":ty==="mp1"?"Multi Pass T1":"Multi Pass T2"; }
 
 function crowdDots(val){
@@ -667,30 +813,75 @@ function render(){
         +"<button class='seg-btn"+(PLAN==="packing"?" on":"")+"' onclick=\"sp('packing')\">Packing List</button>"
         +"<button class='seg-btn"+(PLAN==="todo"?" on":"")+"' onclick=\"sp('todo')\">To Do</button>"
         +"</div>";
+
     if(PLAN==="packing"){
-      for(var c=0;c<PACKING.length;c++){
-        var cat=PACKING[c];
+      out+="<div class='plan-hdr'>"
+          +"<div style='font-size:13px;color:var(--muted)'>"+PKDATA.reduce(function(a,c){return a+c.items.filter(function(x){return x.done;}).length;},0)+" of "+PKDATA.reduce(function(a,c){return a+c.items.length;},0)+" packed</div>"
+          +"<div style='display:flex;gap:10px;align-items:center'>"
+          +"<button class='reset-lnk' onclick='pk_save_template()' style='color:var(--ep)'>Save as Template</button>"
+          +"<button class='reset-lnk' onclick='pk_reset()'>Reset</button>"
+          +"</div></div>";
+      for(var c=0;c<PKDATA.length;c++){
+        var cat=PKDATA[c];
         out+="<div class='card'><div class='pack-cat'>"+cat.cat+"</div>";
         for(var j=0;j<cat.items.length;j++){
-          var it=cat.items[j], key="pk-"+c+"-"+j, done=!!CHK[key];
-          out+="<div class='pk-row' onclick=\"tc('"+key+"')\">"
-              +"<div class='chkbox"+(done?" on":"")+"'>"+(done?"\u2713":"")+"</div>"
-              +"<div class='pk-name"+(done?" done":"")+"'>"+it.n+"</div>"
-              +(it.l?"<div class='lkr'>\uD83D\uDD12 Locker</div>":"")
+          var it=cat.items[j];
+          var cc=c, jj=j;
+          out+="<div class='pk-row' style='cursor:default'>"
+              +"<div class='chkbox"+(it.done?" on":"")+"' onclick=\"pk_chk("+c+","+j+")\" style='cursor:pointer'>"+(it.done?"\u2713":"")+"</div>"
+              +"<div class='pk-name"+(it.done?" done":"")+"' onclick=\"pk_chk("+c+","+j+")\" style='cursor:pointer;flex:1'>"+it.n+"</div>";
+          if(it.l){
+            out+="<div class='lkr'>\uD83D\uDD12 Locker</div>";
+          } else {
+            out+="<div class='qty-wrap'>"
+                +"<button class='qty-btn' onclick=\"pk_dec("+c+","+j+")\">&#x2212;</button>"
+                +"<span class='qty-num'>"+it.qty+"</span>"
+                +"<button class='qty-btn' onclick=\"pk_inc("+c+","+j+")\">+</button>"
+                +"</div>";
+          }
+          out+="<button class='del-btn' onclick=\"pk_del("+c+","+j+")\">\u00d7</button>"
               +"</div>";
+        }
+        if(ADDING_CAT===c){
+          out+="<div class='add-row'>"
+              +"<input id='pk-inp' class='add-inp' placeholder='Item name...' onkeydown=\"pk_inp_key(event,"+c+")\">"
+              +"<button class='add-ok' onclick=\"pk_ok("+c+")\"'>Add</button>"
+              +"<button class='add-cancel' onclick='pk_cancel()'>\u00d7</button>"
+              +"</div>";
+        } else {
+          out+="<button class='add-link' onclick=\"pk_add("+c+")\">+ Add item</button>";
         }
         out+="</div>";
       }
+
     } else {
+      var tdDone=TDDATA.filter(function(t){return t.done;}).length;
+      var tdTotal=TDDATA.filter(function(t){return !t.na;}).length;
+      out+="<div class='plan-hdr'>"
+          +"<div style='font-size:13px;color:var(--muted)'>"+tdDone+" of "+tdTotal+" complete</div>"
+          +"<div style='display:flex;gap:10px;align-items:center'>"
+          +"<button class='reset-lnk' onclick='td_save_template()' style='color:var(--ep)'>Save as Template</button>"
+          +"<button class='reset-lnk' onclick='td_reset()'>Reset</button>"
+          +"</div></div>";
       out+="<div class='card'>";
-      for(var j=0;j<TODOS.length;j++){
-        var td=TODOS[j], na=td.s==="N/A", done=td.s==="Done"||!!CHK["td-"+j];
-        var click = na ? "" : " onclick=\"tc('td-"+j+"')\"";
-        out+="<div class='pk-row'"+(na?" style='opacity:.45;cursor:default'":"")+click+">"
-            +"<div class='chkbox"+(done?" on":"")+"'>"+(done?"\u2713":"")+"</div>"
-            +"<div class='pk-name"+(done?" done":"")+"'>"+td.n+"</div>"
-            +(na?"<div class='lkr' style='color:var(--muted)'>N/A</div>":"")
+      for(var j=0;j<TDDATA.length;j++){
+        var td=TDDATA[j];
+        out+="<div class='pk-row' style='cursor:default;gap:10px'>"
+            +"<div class='chkbox"+(td.done?" on":td.na?" on":"")+"' onclick=\"td_chk("+j+")\" style='cursor:"+(td.na?"default":"pointer")+";flex-shrink:0'>"+(td.done?"\u2713":td.na?"\u2014":"")+"</div>"
+            +"<div class='pk-name"+(td.done?" done":"")+"' onclick=\"td_chk("+j+")\" style='cursor:"+(td.na?"default":"pointer")+";flex:1;opacity:"+(td.na?".45":"1")+"'>"+td.n+"</div>"
+            +(td.when?"<div class='td-when'>"+td.when+"</div>":"")
+            +"<button onclick=\"td_na("+j+")\" style='font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:"+(td.na?"#E5E1D8":"var(--cream)")+";color:var(--muted);border:1px solid var(--border);cursor:pointer;flex-shrink:0'>N/A</button>"
+            +"<button class='del-btn' onclick=\"td_del("+j+")\">\u00d7</button>"
             +"</div>";
+      }
+      if(ADDING_TODO){
+        out+="<div class='add-row'>"
+            +"<input id='td-inp' class='add-inp' placeholder='Task name...' onkeydown='td_inp_key(event)'>"
+            +"<button class='add-ok' onclick='td_ok()'>Add</button>"
+            +"<button class='add-cancel' onclick='td_cancel()'>\u00d7</button>"
+            +"</div>";
+      } else {
+        out+="<button class='add-link' onclick='td_add()'>+ Add task</button>";
       }
       out+="</div>";
     }
