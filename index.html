@@ -544,6 +544,7 @@ function td_inp_key(e){ if(e.key==='Enter') td_ok(); if(e.key==='Escape') td_can
 
 function pk_save_template(){ if(confirm('Save current list as your template for future trips?')){localStorage.setItem('dvc_pk_master',JSON.stringify(PKDATA));alert('Template saved!');} }
 function td_save_template(){ if(confirm('Save current to-do list as your template for future trips?')){localStorage.setItem('dvc_td_master',JSON.stringify(TDDATA));alert('Template saved!');} }
+function tagCls(ty){ return ty==="sp"?"sp":ty==="mp1"?"mp1":"mp2"; }
 function tagLbl(ty){ return ty==="sp"?"Single Pass":ty==="mp1"?"Multi Pass T1":"Multi Pass T2"; }
 
 function crowdDots(val){
