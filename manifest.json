@@ -1,0 +1,24 @@
+{
+  "name": "DVC — July 2026",
+  "short_name": "DVC 2026",
+  "description": "Disney trip guide for the Mills family",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1B2B4A",
+  "theme_color": "#1B2B4A",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
