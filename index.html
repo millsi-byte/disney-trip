@@ -188,6 +188,9 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .td-when{font-size:13px;color:var(--muted);white-space:nowrap;font-weight:500;padding:2px 7px;background:#F3F4F6;border-radius:6px;flex-shrink:0}
 .na-btn{font-size:13px;font-weight:700;padding:3px 7px;border-radius:8px;border:1px solid var(--border);cursor:pointer;flex-shrink:0;font-family:'Inter',sans-serif;background:var(--cream);color:var(--muted)}
 .na-btn.active{background:#E5E1D8;color:var(--ink)}
+.h-res{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;letter-spacing:.03em}
+.checkin-hotel{font-size:17px;font-weight:700;color:var(--ink);margin-top:3px}
+.checkin-res{font-size:14px;color:var(--gold);font-weight:700;margin-top:2px;letter-spacing:.02em}
 /* Nav */
 .bnav{display:flex;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);flex-shrink:0}
 .nbtn{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px 10px;cursor:pointer;color:#9CA3AF;font-size:11px;font-weight:600;letter-spacing:.04em;gap:3px;border:none;background:none;font-family:'Inter',sans-serif}
@@ -198,13 +201,16 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 <body>
 <header class="hdr">
   <div class="hdr-title">DVC — July 2026</div>
-  <div class="hdr-sub">Boardwalk Villa &middot; Jul 14–19 &middot; Res #619078381899</div>
+  <div class="hdr-sub">Jul 14 – 19, 2026</div>
 </header>
 <div id="strip-wrap"></div>
 <main id="app"></main>
 <nav class="bnav" id="bnav"></nav>
 
 <script>
+// ── TRIP ──────────────────────────────────────────────────────────────
+var TRIP={hotel:"Boardwalk Villa 1BR",resno:"#619078381899"};
+
 // ── PARKS ───────────────────────────────────────────────────────────
 var PARKS = {
   trv:{name:"Travel Day",  color:"#8C9BAA",short:"TRV"},
@@ -225,7 +231,8 @@ var DAYS = [
     itin:[
       {t:"5:45 AM",  x:"Depart BOS"},
       {t:"11:50 AM", x:"Arrive MCO"},
-      {t:"Afternoon",x:"Check in Boardwalk Villa 1BR · Activate APs · Owners Locker delivered to room"},
+      {t:"Afternoon",x:"Check in",checkin:true},
+      {t:"Afternoon",x:"Activate APs · Owners Locker delivered to room"},
       {t:"Evening",  x:"Epcot (Park Reservation)"}
     ],
     strategy:null, shows:[], ll:[], roll:[], din:[]
@@ -624,7 +631,8 @@ function renderDays(){
   o+='<div class="hero-body" style="background:'+pk.color+'">';
   o+='<div class="h-date">Jul '+day.date+' &middot; '+day.dl+'</div>';
   o+='<div class="h-park">'+pk.name+'</div>';
-  o+='<div class="h-resort">Boardwalk Villa &middot; 1BR</div>';
+  o+='<div class="h-resort">'+TRIP.hotel+'</div>';
+  o+='<div class="h-res">Res '+TRIP.resno+'</div>';
   o+='<div class="h-badges">';
   for(var b=0;b<day.badges.length;b++) o+='<span class="badge">'+day.badges[b]+'</span>';
   o+='</div></div>';
@@ -679,7 +687,15 @@ function renderDays(){
       var it=day.itin[j],isNext=(j===nextIdx),isFlight=isFlightRow(it);
       o+='<div class="t-row'+(isNext?' nextup':'')+'">';
       o+='<div class="t-time">'+it.t+'</div>';
-      o+='<div style="flex:1"><div class="t-text">'+pillifyText(it.x)+'</div>';
+      if(it.checkin){
+  o+='<div style="flex:1">';
+  o+='<div class="t-text">Check in</div>';
+  o+='<div class="checkin-hotel">'+TRIP.hotel+'</div>';
+  o+='<div class="checkin-res">Res '+TRIP.resno+'</div>';
+  o+='</div>';
+}else{
+  o+='<div style="flex:1"><div class="t-text">'+pillifyText(it.x)+'</div>';
+}
       var tags=[];
       if(isNext) tags.push('<span class="t-tag t-tag-next">'+IC.arr+' Next up</span>');
       if(isFlight) tags.push('<span class="t-tag t-tag-flight">'+IC.plxs+' Flight</span>');
