@@ -20,7 +20,7 @@
   --mk:#6B4FA0;--ep:#0077A8;--hs:#C24530;--ak:#3B7549;--trv:#8C9BAA;
   --gold:#B8892A;--gold-lt:#FEF3C7;--gold-dk:#78350F;
 }
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--ink);max-width:430px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+html,body{height:100%}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--ink);max-width:430px;margin:0 auto;display:flex;flex-direction:column}
 /* Header */
 .hdr{background:var(--ink);color:#fff;padding:calc(16px + env(safe-area-inset-top)) 18px 14px;flex-shrink:0}
 .hdr-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:600;letter-spacing:-0.01em}
@@ -36,7 +36,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .p-bar{width:22px;height:4px;border-radius:2px;margin-top:3px}
 .p-pk{font-size:11px;color:rgba(255,255,255,.9);font-weight:700;letter-spacing:.06em}
 /* Scroll area */
-#app{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(80px + env(safe-area-inset-bottom))}
+#app{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
 /* Hero */
 .hero{border-radius:var(--r);overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .hero-body{padding:16px 18px 14px}
@@ -192,7 +192,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:
 .checkin-hotel{font-size:17px;font-weight:700;color:var(--ink);margin-top:3px}
 .checkin-res{font-size:14px;color:var(--gold);font-weight:700;margin-top:2px;letter-spacing:.02em}
 /* Nav */
-.bnav{display:flex;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);flex-shrink:0}
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);z-index:200}
 .nbtn{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px 10px;cursor:pointer;color:#9CA3AF;font-size:11px;font-weight:600;letter-spacing:.04em;gap:3px;border:none;background:none;font-family:'Inter',sans-serif}
 .nbtn.on{color:var(--ink)}
 .nbtn-dot{width:4px;height:4px;border-radius:50%;background:var(--ink)}
