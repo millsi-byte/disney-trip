@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>DVC · July 2026</title>
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,203 +10,232 @@
 <meta name="apple-mobile-web-app-title" content="DVC 2026">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="theme-color" content="#1B2B4A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#1B2B4A;--cream:#F7F4EF;--card:#fff;--muted:#4B5563;
+  --ink:#1B2B4A;--cream:#F7F4EF;--card:#fff;--muted:#6B7280;--border:#E5E1D8;--r:14px;
   --mk:#6B4FA0;--ep:#0077A8;--hs:#C24530;--ak:#3B7549;--trv:#8C9BAA;
   --gold:#B8892A;--gold-lt:#FEF3C7;--gold-dk:#78350F;
-  --border:#E5E1D8;--r:12px;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--ink);max-width:430px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
-.hdr{background:var(--ink);color:#fff;padding:16px 18px 14px;position:sticky;top:0;z-index:100}
-.hdr-title{font-family:Georgia,serif;font-size:19px;font-weight:normal;letter-spacing:.02em}
-.hdr-sub{font-size:12px;color:#ffffff;margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.strip-wrap{background:var(--ink);padding:0 14px 14px;overflow-x:auto;scrollbar-width:none}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--cream);color:var(--ink);max-width:430px;margin:0 auto;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+/* Header */
+.hdr{background:var(--ink);color:#fff;padding:calc(16px + env(safe-area-inset-top)) 18px 14px;flex-shrink:0}
+.hdr-title{font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:600;letter-spacing:-0.01em}
+.hdr-sub{font-size:11px;color:rgba(255,255,255,.65);margin-top:3px;letter-spacing:.04em;text-transform:uppercase}
+/* Day strip */
+.strip-wrap{background:var(--ink);padding:0 14px 14px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}
 .strip-wrap::-webkit-scrollbar{display:none}
-.strip{display:flex;gap:8px;min-width:max-content}
-.dpill{display:flex;flex-direction:column;align-items:center;padding:8px 12px;border-radius:10px;cursor:pointer;border:2px solid transparent;background:rgba(255,255,255,.08);min-width:60px;transition:all .15s}
-.dpill.on{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.16)}
-.p-day{font-size:12px;color:rgba(255,255,255,.9);text-transform:uppercase;letter-spacing:.06em}
-.p-date{font-size:18px;font-weight:700;color:#fff;margin:1px 0}
-.p-dot{width:20px;height:6px;border-radius:3px;margin-top:4px}
-.p-pk{font-size:12px;color:#ffffff;margin-top:3px;font-weight:700;letter-spacing:.04em}
-.content{flex:1;padding:14px 14px 80px}
-.hero{border-radius:var(--r);padding:16px 18px;color:#fff;margin-bottom:12px}
-.h-date{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#fff;font-weight:600}
-.h-park{font-family:Georgia,serif;font-size:24px;font-weight:bold;margin:4px 0;color:#fff}
-.h-sub{font-size:16px;color:#fff;font-weight:600}
+.strip{display:flex;gap:6px}
+.dpill{display:flex;flex-direction:column;align-items:center;padding:8px 10px 7px;border-radius:10px;cursor:pointer;border:2px solid transparent;background:rgba(255,255,255,.08);min-width:54px;transition:all .15s;gap:2px}
+.dpill.on{border-color:rgba(255,255,255,.55);background:rgba(255,255,255,.18)}
+.p-day{font-size:9px;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.p-date{font-size:19px;font-weight:700;color:#fff;line-height:1.1}
+.p-bar{width:22px;height:4px;border-radius:2px;margin-top:3px}
+.p-pk{font-size:9px;color:rgba(255,255,255,.9);font-weight:700;letter-spacing:.06em}
+/* Scroll area */
+#app{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(80px + env(safe-area-inset-bottom))}
+/* Hero */
+.hero{border-radius:var(--r);overflow:hidden;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.hero-body{padding:16px 18px 14px}
+.h-date{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.75)}
+.h-park{font-family:'Fraunces',Georgia,serif;font-size:27px;font-weight:700;color:#fff;margin:4px 0 2px;letter-spacing:-.02em;line-height:1.1}
+.h-resort{font-size:12px;color:rgba(255,255,255,.7)}
 .h-badges{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.badge{font-size:13px;font-weight:700;padding:5px 11px;background:rgba(255,255,255,.3);border-radius:20px;letter-spacing:.04em;color:#fff}
-/* Park info bar: hours + crowd */
-.park-info{background:var(--card);border:1px solid var(--border);border-radius:10px;margin-bottom:12px;display:flex;overflow:hidden}
-.pi-cell{flex:1;padding:10px 14px;display:flex;flex-direction:column;gap:2px}
-.pi-cell:not(:last-child){border-right:1px solid var(--border)}
-.pi-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink)}
-.pi-val{font-size:17px;font-weight:700;color:var(--ink)}
-.pi-tbd{font-size:13px;color:var(--muted);font-style:italic}
-/* Crowd dots */
-.crowd-dots{display:flex;gap:3px;margin-top:3px}
-.cdot{width:8px;height:8px;border-radius:50%}
-.alert{background:var(--gold-lt);border-left:4px solid var(--gold);border-radius:8px;padding:11px 13px;margin-bottom:12px;font-size:14px;color:var(--gold-dk);line-height:1.45}
-.alert strong{display:block;font-size:13px;text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px;color:var(--gold-dk)}
-.card{background:var(--card);border-radius:var(--r);margin-bottom:12px;overflow:hidden;border:1px solid var(--border)}
-.card-hd{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;cursor:pointer;user-select:none}
-.card-lbl{display:flex;align-items:center;gap:12px}
-.card-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.card-title{font-size:15px;font-weight:600}
-.card-sub{font-size:13px;color:var(--muted)}
-.chev{font-size:11px;color:var(--muted);transition:transform .2s}
+.badge{font-size:10px;font-weight:700;padding:4px 10px;background:rgba(255,255,255,.22);border-radius:20px;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.hero-alert{background:#7F1D1D;padding:10px 16px;display:flex;align-items:flex-start;gap:8px}
+.hero-alert svg{color:#FCA5A5;flex-shrink:0;margin-top:1px}
+.hero-alert-txt{font-size:12px;color:#FEE2E2;line-height:1.45}
+/* Info bar */
+.info-bar{background:var(--card);border:1px solid var(--border);border-radius:12px;display:flex;overflow:hidden;margin-bottom:10px}
+.ib-cell{flex:1;padding:9px 11px;display:flex;flex-direction:column;gap:3px}
+.ib-cell:not(:last-child){border-right:1px solid var(--border)}
+.ib-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.ib-val{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3}
+.crowd-pill{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px}
+.cpl-lt{background:#DCFCE7;color:#166534}
+.cpl-md{background:#FEF3C7;color:#92400E}
+.cpl-hv{background:#FEE2E2;color:#991B1B}
+.ib-res{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700}
+.ib-res-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+/* Cards */
+.card{background:var(--card);border-radius:var(--r);margin-bottom:10px;overflow:hidden;border:1px solid var(--border)}
+.card-hd{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;cursor:pointer;user-select:none}
+.card-lbl{display:flex;align-items:center;gap:11px}
+.card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.card-title{font-size:14px;font-weight:600;color:var(--ink)}
+.card-sub{font-size:12px;color:var(--muted);margin-top:1px}
+.chev{color:var(--muted);transition:transform .2s;flex-shrink:0}
 .chev.open{transform:rotate(90deg)}
 .card-body{border-top:1px solid var(--border)}
-/* Flight section */
+/* Flight */
 .flt-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;padding:14px 16px;align-items:center}
 .flt-side{display:flex;flex-direction:column}
 .flt-side.right{text-align:right;align-items:flex-end}
-.flt-apt{font-size:28px;font-weight:700;letter-spacing:.05em}
-.flt-city{font-size:15px;color:var(--muted);margin-top:1px}
-.flt-time{font-size:20px;font-weight:600;margin-top:6px}
-.flt-date{font-size:14px;color:var(--muted)}
+.flt-apt{font-family:'Fraunces',Georgia,serif;font-size:30px;font-weight:700;letter-spacing:.02em;color:var(--ink)}
+.flt-city{font-size:12px;color:var(--muted);margin-top:1px}
+.flt-time{font-size:18px;font-weight:700;color:var(--ink);margin-top:5px}
+.flt-date{font-size:11px;color:var(--muted)}
 .flt-mid{display:flex;flex-direction:column;align-items:center;gap:3px;padding-top:4px}
-.flt-line{display:flex;align-items:center;gap:4px;width:100%}
-.flt-dash{flex:1;height:1px;background:var(--border)}
-.flt-plane{font-size:14px}
-.flt-carrier{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:.05em;text-align:center}
-.flt-meta{display:flex;gap:0;border-top:1px solid var(--border)}
+.flt-line{display:flex;align-items:center;gap:3px}
+.flt-dash{flex:1;height:1px;background:var(--border);width:18px}
+.flt-carrier{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.flt-meta{display:flex;border-top:1px solid var(--border)}
 .flt-meta-cell{flex:1;padding:10px 14px}
 .flt-meta-cell:not(:last-child){border-right:1px solid var(--border)}
-.flt-mlabel{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:2px}
-.flt-mval{font-size:18px;font-weight:600}
-/* Itinerary rows */
-.t-row{display:flex;gap:12px;padding:10px 15px;border-bottom:1px solid var(--border);align-items:flex-start}
+.flt-mlbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
+.flt-mval{font-size:16px;font-weight:700;color:var(--ink)}
+/* Itinerary */
+.plan-summary{padding:10px 14px;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.5}
+.plan-summary strong{color:var(--ink);font-weight:700}
+.t-row{display:flex;gap:12px;padding:10px 14px;border-bottom:1px solid var(--border);align-items:flex-start}
 .t-row:last-child{border-bottom:none}
-.t-time{font-size:15px;font-weight:700;color:var(--muted);letter-spacing:.04em;min-width:82px;padding-top:2px;white-space:nowrap;flex-shrink:0}
-.t-text{font-size:18px;line-height:1.45}
-.crit{font-size:12px;font-weight:700;padding:3px 9px;border-radius:10px;margin-left:6px;background:#FEE2E2;color:#991B1B;vertical-align:middle;white-space:nowrap}
-/* Full details */
-.detail-block{padding:12px 15px;font-size:18px;line-height:1.7;color:#374151;border-bottom:1px solid var(--border)}
-.detail-block:last-child{border-bottom:none}
-.detail-block p{margin-bottom:8px}
-.detail-block p:last-child{margin-bottom:0}
-.detail-hed{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
-/* LL */
-.ll-row{padding:11px 15px;border-bottom:1px solid var(--border)}
+.t-row.nextup{border-left:3px solid var(--gold);padding-left:11px;background:#FFFBEB}
+.t-time{font-size:12px;font-weight:700;color:var(--muted);min-width:72px;flex-shrink:0;padding-top:2px;white-space:nowrap;letter-spacing:.02em}
+.t-text{font-size:14px;line-height:1.45;color:var(--ink);flex:1}
+.t-tags{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap}
+.t-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:3px}
+.t-tag-next{background:var(--gold-lt);color:var(--gold-dk)}
+.t-tag-flight{background:#DBEAFE;color:#1E40AF}
+.t-tag-crit{background:#FEE2E2;color:#991B1B}
+/* LL compact legend */
+.ll-legend{padding:8px 14px;border-bottom:1px solid var(--border);display:flex;gap:12px;flex-wrap:wrap;background:#FAFAF9}
+.ll-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+/* LL rows */
+.ll-row{padding:11px 14px;border-bottom:1px solid var(--border)}
 .ll-row:last-child{border-bottom:none}
 .ll-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.ll-ride{font-size:18px;font-weight:600}
-.ll-tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;flex-shrink:0}
+.ll-ride{font-size:14px;font-weight:600;color:var(--ink)}
+.ll-tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;text-transform:uppercase;letter-spacing:.05em;flex-shrink:0}
 .sp{background:#FEE2E2;color:#991B1B}
 .mp1{background:#DBEAFE;color:#1E40AF}
 .mp2{background:#D1FAE5;color:#065F46}
-.ll-win{font-size:16px;color:var(--muted);margin-top:3px}
-.ll-bd{font-size:14px;color:var(--gold);font-weight:600;margin-top:2px}
-.roll-hd{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink);padding:11px 15px 6px}
-.roll-row{padding:7px 15px;font-size:18px;display:flex;gap:8px}
-.roll-row::before{content:"→";color:var(--muted);flex-shrink:0}
+.ll-win{font-size:12px;color:var(--muted);margin-top:3px}
+.ll-bd{font-size:12px;color:var(--gold);font-weight:700;margin-top:2px}
+.roll-hd{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);padding:9px 14px 5px;background:#FAFAF9}
+.roll-row{padding:7px 14px;font-size:13px;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid var(--border);color:var(--ink)}
+.roll-row:last-child{border-bottom:none}
+.roll-arr{color:var(--gold);flex-shrink:0;font-weight:700;margin-top:1px}
 /* Dining */
-.din-row{display:flex;gap:12px;align-items:center;padding:11px 15px;border-bottom:1px solid var(--border)}
+.din-row{display:flex;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border)}
 .din-row:last-child{border-bottom:none}
-.meal{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:#E8EDF5;color:var(--ink);padding:5px 10px;border-radius:6px;width:90px;text-align:center;flex-shrink:0}
-.din-name{font-size:18px;font-weight:600}
-.din-time{font-size:16px;color:var(--muted);margin-top:2px}
+.meal{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;background:#EEF2FF;color:var(--ink);padding:4px 8px;border-radius:6px;width:72px;text-align:center;flex-shrink:0}
+.din-name{font-size:14px;font-weight:600;color:var(--ink)}
+.din-time{font-size:12px;color:var(--muted);margin-top:1px}
+.nonpark-badge{font-size:10px;font-weight:700;color:#fff;background:#6B7280;padding:2px 7px;border-radius:6px;white-space:nowrap;flex-shrink:0}
 /* Shows */
-.show-row{display:flex;align-items:center;justify-content:space-between;padding:11px 15px;border-bottom:1px solid var(--border)}
+.show-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--border)}
 .show-row:last-child{border-bottom:none}
-.show-name{font-size:18px;font-weight:600}
-.show-time{font-size:16px;color:var(--muted)}
-/* Nav */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);display:flex;max-width:430px;margin:0 auto;z-index:100}
-.nbtn{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 6px 12px;cursor:pointer;color:#6B7280;font-size:12px;font-weight:600;letter-spacing:.04em;gap:3px;border:none;background:none}
-.nbtn.on{color:var(--ink);font-weight:700}
-.nicon{font-size:20px;line-height:1}
-.ndot{width:4px;height:4px;border-radius:50%;background:var(--ink);margin-top:2px}
-.nspc{height:6px}
-/* Packing */
-.pack-cat{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);padding:14px 15px 8px}
-.pk-row{display:flex;align-items:center;gap:12px;padding:10px 15px;border-bottom:1px solid var(--border);cursor:pointer}
-.pk-row:last-child{border-bottom:none}
-.chkbox{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px}
-.chkbox.on{background:var(--ink);border-color:var(--ink);color:#fff}
-.pk-name{font-size:18px}
-.pk-name.done{text-decoration:line-through;color:var(--muted)}
-.lkr{font-size:13px;color:var(--gold-dk);font-weight:700;margin-left:auto}
-/* LL page */
+.show-name{font-size:14px;font-weight:600}
+.show-time{font-size:13px;color:var(--muted)}
+/* Strategy */
+.strategy-body{padding:14px;font-size:13px;line-height:1.75;color:#374151}
+.strategy-body p{margin-bottom:10px}
+.strategy-body p:last-child{margin-bottom:0}
+/* Page headers */
+.pg-title{font-family:'Fraunces',Georgia,serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.pg-sub{font-size:13px;color:var(--muted);margin-bottom:14px}
+/* Schedule */
+.sch-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.sch-card-hd{padding:12px 14px;display:flex;align-items:center;gap:10px}
+.sch-day-hd{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;border-bottom:1px solid var(--border)}
+.sch-day-name{font-size:13px;font-weight:700}
+.sch-day-date{font-size:11px;opacity:.8}
+/* Lightning tab */
 .llp-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
-.llp-hd{padding:12px 15px;display:flex;align-items:center;gap:10px}
-.llp-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.llp-hd{padding:12px 14px;display:flex;align-items:center;gap:10px}
 .llp-name{font-size:15px;font-weight:700}
-.llp-bd{font-size:14px;color:var(--gold);font-weight:600;margin-left:auto;white-space:nowrap}
-.pg-title{font-family:Georgia,serif;font-size:22px;margin-bottom:6px}
-.pg-sub{font-size:16px;color:var(--muted);margin-bottom:14px}
-.seg{display:flex;background:var(--cream);border-radius:8px;padding:3px;gap:3px;margin-bottom:14px;border:1px solid var(--border)}
-.seg-btn{flex:1;padding:8px;font-size:13px;font-weight:600;border:none;background:transparent;border-radius:6px;cursor:pointer;color:var(--muted)}
+.llp-book{font-size:12px;opacity:.85;margin-left:auto;white-space:nowrap}
+.ll-full-legend{background:#FFFBEB;border-bottom:1px solid var(--border);padding:12px 14px}
+.ll-full-legend h3{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:9px}
+.llfl-item{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;font-size:12px;line-height:1.45;color:var(--ink)}
+.llfl-item:last-child{margin-bottom:0}
+/* Planning */
+.seg{display:flex;background:var(--cream);border-radius:10px;padding:3px;gap:3px;border:1px solid var(--border);margin-bottom:0}
+.seg-btn{flex:1;padding:8px;font-size:13px;font-weight:600;border:none;background:transparent;border-radius:8px;cursor:pointer;color:var(--muted);font-family:'Inter',sans-serif}
 .seg-btn.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1)}
-.sch-day-hd{display:flex;align-items:center;gap:10px;padding:12px 15px;border-bottom:1px solid var(--border)}
-.sch-day-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.sch-day-name{font-size:17px;font-weight:700;color:var(--ink)}
-.sch-day-date{font-size:13px;color:var(--muted);margin-left:auto}
-.qty-wrap{display:flex;align-items:center;gap:5px;margin-left:auto;flex-shrink:0}
-.qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--border);background:var(--cream);font-size:15px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;padding:0}
+.plan-sticky{position:sticky;top:0;z-index:5;background:var(--cream);padding:0 0 10px}
+.prog-label{font-size:12px;color:var(--muted);margin:8px 0 4px}
+.prog-outer{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-inner{height:100%;background:var(--ink);border-radius:2px;transition:width .3s}
+.prog-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+.prog-btn{font-size:11px;font-weight:600;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;text-decoration:underline;font-family:'Inter',sans-serif}
+.prog-btn.blu{color:#0077A8}
+.cat-hdr{padding:11px 14px 7px;display:flex;align-items:center;justify-content:space-between}
+.cat-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--ink)}
+.cat-count{font-size:12px;color:var(--muted);font-weight:600}
+.pk-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--border)}
+.chkbox{width:20px;height:20px;border-radius:5px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;color:#fff}
+.chkbox.on{background:var(--ink);border-color:var(--ink)}
+.pk-name{font-size:14px;color:var(--ink);flex:1;cursor:pointer;line-height:1.3}
+.pk-name.done{text-decoration:line-through;color:var(--muted)}
+.lkr-tag{font-size:10px;font-weight:700;color:#92400E;background:#FEF3C7;padding:2px 7px;border-radius:6px;margin-left:auto;flex-shrink:0;white-space:nowrap}
+.qty-wrap{display:flex;align-items:center;gap:4px;margin-left:auto;flex-shrink:0}
+.qty-btn{width:44px;height:44px;border-radius:22px;border:1.5px solid var(--border);background:var(--cream);font-size:20px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;font-family:'Inter',sans-serif}
 .qty-btn:active{background:var(--border)}
-.qty-num{font-size:14px;font-weight:700;min-width:18px;text-align:center}
-.del-btn{width:24px;height:24px;border-radius:50%;border:none;background:transparent;color:#CBD5E1;font-size:18px;cursor:pointer;flex-shrink:0;line-height:1;padding:0;display:flex;align-items:center;justify-content:center}
-.del-btn:active{color:var(--hs)}
-.add-row{display:flex;align-items:center;gap:8px;padding:10px 15px;border-top:1px solid var(--border)}
-.add-inp{flex:1;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:14px;background:var(--cream);color:var(--ink);outline:none;min-width:0}
+.qty-num{font-size:14px;font-weight:700;min-width:20px;text-align:center}
+.del-btn{width:28px;height:28px;border-radius:50%;border:none;background:transparent;color:#CBD5E1;font-size:17px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0}
+.del-btn:active{color:#ef4444}
+.del-confirm-btn{font-size:10px;font-weight:700;padding:4px 8px;border-radius:8px;background:#FEE2E2;color:#991B1B;border:none;cursor:pointer;flex-shrink:0;white-space:nowrap;font-family:'Inter',sans-serif}
+.add-row{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--border)}
+.add-inp{flex:1;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:14px;background:var(--cream);color:var(--ink);outline:none;min-width:0;font-family:'Inter',sans-serif}
 .add-inp:focus{border-color:var(--ink)}
-.add-ok{padding:7px 12px;background:var(--ink);color:white;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
-.add-cancel{padding:7px 10px;background:none;border:none;color:var(--muted);font-size:16px;cursor:pointer}
-.add-link{font-size:13px;color:var(--ep);background:none;border:none;cursor:pointer;padding:10px 15px;text-align:left;width:100%;border-top:1px dashed var(--border);font-weight:600}
-.plan-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.reset-lnk{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
-.td-when{font-size:14px;color:var(--ink);white-space:nowrap;margin-left:auto;padding-right:4px;font-weight:500}
+.add-ok{padding:7px 12px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif}
+.add-cancel{padding:7px 8px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+.add-link{font-size:13px;color:#0077A8;background:none;border:none;cursor:pointer;padding:10px 14px;text-align:left;width:100%;border-top:1px dashed var(--border);font-weight:600;font-family:'Inter',sans-serif;display:block}
+.td-when{font-size:11px;color:var(--muted);white-space:nowrap;font-weight:500;padding:2px 7px;background:#F3F4F6;border-radius:6px;flex-shrink:0}
+.na-btn{font-size:10px;font-weight:700;padding:3px 7px;border-radius:8px;border:1px solid var(--border);cursor:pointer;flex-shrink:0;font-family:'Inter',sans-serif;background:var(--cream);color:var(--muted)}
+.na-btn.active{background:#E5E1D8;color:var(--ink)}
+/* Nav */
+.bnav{display:flex;background:var(--card);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom);flex-shrink:0}
+.nbtn{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px 10px;cursor:pointer;color:#9CA3AF;font-size:10px;font-weight:600;letter-spacing:.04em;gap:3px;border:none;background:none;font-family:'Inter',sans-serif}
+.nbtn.on{color:var(--ink)}
+.nbtn-dot{width:4px;height:4px;border-radius:50%;background:var(--ink)}
 </style>
 </head>
 <body>
-<div class="hdr">
+<header class="hdr">
   <div class="hdr-title">DVC — July 2026</div>
-  <div class="hdr-sub">Boardwalk Villa &nbsp;·&nbsp; Jul 14–19 &nbsp;·&nbsp; Res #619078381899</div>
-</div>
-<div id="strip"></div>
-<div id="app"></div>
+  <div class="hdr-sub">Boardwalk Villa &middot; Jul 14–19 &middot; Res #619078381899</div>
+</header>
+<div id="strip-wrap"></div>
+<main id="app"></main>
+<nav class="bnav" id="bnav"></nav>
 
 <script>
+// ── PARKS ───────────────────────────────────────────────────────────
 var PARKS = {
-  trv:{name:"Travel Day",color:"#8C9BAA",short:"TRV",e:"✈️"},
-  hs: {name:"Hollywood Studios",color:"#C24530",short:"HS", e:"🎬"},
-  mk: {name:"Magic Kingdom",   color:"#6B4FA0",short:"MK", e:"🏰"},
-  ep: {name:"EPCOT",           color:"#0077A8",short:"EP", e:"🌐"},
-  ak: {name:"Animal Kingdom",  color:"#3B7549",short:"AK", e:"🦁"}
+  trv:{name:"Travel Day",  color:"#8C9BAA",short:"TRV"},
+  hs: {name:"Hollywood Studios",color:"#C24530",short:"HS"},
+  mk: {name:"Magic Kingdom",   color:"#6B4FA0",short:"MK"},
+  ep: {name:"EPCOT",           color:"#0077A8",short:"EP"},
+  ak: {name:"Animal Kingdom",  color:"#3B7549",short:"AK"}
 };
 
+// ── DAYS ─────────────────────────────────────────────────────────────
 var DAYS = [
-  // ── Jul 14  TRAVEL ──────────────────────────────────────────────
+  // Jul 14 TRAVEL
   { date:"14", dl:"Tue", park:"trv",
     badges:["Locker Delivered to Room","Activate APs"],
     alert:null,
-    res:"ep", crowd: 3, hours: "8:30 AM – 9:00 PM",
-    flight:{
-      num:"SW 4657 / 3658", conf:"CCSJ4H",
-      dep:"5:45 AM", depApt:"BOS", depCity:"Boston",
-      arr:"11:50 AM", arrApt:"MCO", arrCity:"Orlando"
-    },
+    res:"ep", crowd:3, hours:"8:30 AM – 9:00 PM",
+    flight:{num:"SW 4657 / 3658",conf:"CCSJ4H",dep:"5:45 AM",depApt:"BOS",depCity:"Boston",arr:"11:50 AM",arrApt:"MCO",arrCity:"Orlando"},
     itin:[
-      {t:"5:45 AM",   x:"Depart BOS"},
-      {t:"11:50 AM",  x:"Arrive MCO"},
-      {t:"Afternoon", x:"Check in Boardwalk Villa 1BR · Activate APs · Owners Locker delivered to room"},
-      {t:"Evening",   x:"Epcot (Park Reservation)"}
+      {t:"5:45 AM",  x:"Depart BOS"},
+      {t:"11:50 AM", x:"Arrive MCO"},
+      {t:"Afternoon",x:"Check in Boardwalk Villa 1BR · Activate APs · Owners Locker delivered to room"},
+      {t:"Evening",  x:"Epcot (Park Reservation)"}
     ],
-    strategy: null,
-    shows:[], ll:[], roll:[],
-    din:[]
+    strategy:null, shows:[], ll:[], roll:[], din:[]
   },
-
-  // ── Jul 15  HOLLYWOOD STUDIOS (solo/relaxed) ────────────────────
+  // Jul 15 HOLLYWOOD STUDIOS relaxed
   { date:"15", dl:"Wed", park:"hs",
     badges:["Relaxed Day"],
-    alert: null,
-    res:"hs", crowd: 3, hours: "8:30 AM – 9:00 PM",
-    flight: null,
+    alert:null,
+    res:"hs", crowd:3, hours:"8:30 AM – 9:00 PM",
+    flight:null,
     itin:[
       {t:"11:00 AM", x:"Baseline Tap House"},
       {t:"Noon",     x:"TuneIn Lounge"},
@@ -216,25 +245,24 @@ var DAYS = [
     strategy:"Relaxed day at Hollywood Studios with no must-dos or pre-booked LLs. Good opportunity to wander Echo Lake and Grand Avenue. Baseline Tap House has a strong craft beer selection and is shaded. TuneIn Lounge is right next door — great theming and solid cocktails. Brown Derby Lounge does not require a reservation and has a nice abbreviated menu vs. the full restaurant.",
     shows:[], ll:[], roll:[],
     din:[
-      {m:"Lunch",  n:"Hollywood Brown Derby Lounge", t:"~12:30 PM"},
-      {m:"Dinner", n:"Bourbon Steak",                t:"7:00 PM", loc:"Non-Park"}
+      {m:"Lunch",  n:"Hollywood Brown Derby Lounge",t:"~12:30 PM"},
+      {m:"Dinner", n:"Bourbon Steak",               t:"7:00 PM", loc:"Non-Park"}
     ]
   },
-
-  // ── Jul 16  MAGIC KINGDOM ───────────────────────────────────────
+  // Jul 16 MAGIC KINGDOM
   { date:"16", dl:"Thu", park:"mk",
     badges:["Early Entry 8:30 AM","Multi Pass Day"],
     alert:"7:45 AM at the tap stiles. Don't slip on this — the whole morning depends on it.",
-    res:"mk", crowd: 3, hours: "8:30 AM – 10:00 PM",
-    flight: null,
+    res:"mk", crowd:3, hours:"8:30 AM – 10:00 PM",
+    flight:null,
     itin:[
-      {t:"7:45 AM",  x:"At tap stiles",                                        crit:"⚡ CRITICAL"},
+      {t:"7:45 AM",  x:"At tap stiles",                                        crit:"Critical"},
       {t:"8:30 AM",  x:"Early Entry → Tiana's (walk-on)"},
       {t:"9:00 AM",  x:"Big Thunder Mountain (walk-on)"},
       {t:"9:30 AM",  x:"Space Mountain standby"},
       {t:"10:00 AM", x:"Tron (Single Pass window)"},
       {t:"10:30 AM", x:"Jungle Cruise (MP T1) → rebook Buzz"},
-      {t:"11:00 AM", x:"Pirates (MP T2) → rebook nighttime ride #1"},
+      {t:"11:00 AM", x:"Pirates of the Caribbean (MP T2) → rebook nighttime ride #1"},
       {t:"11:30 AM", x:"Tiki Room (walk-on)"},
       {t:"12:00 PM", x:"Haunted Mansion (MP T2) → rebook nighttime ride #2"},
       {t:"12:30 PM", x:"It's a Small World"},
@@ -243,10 +271,10 @@ var DAYS = [
       {t:"~2:30 PM", x:"Resort — swim / rest"},
       {t:"Evening",  x:"Return: Monorail Crawl + fireworks + 2 nighttime re-rides"}
     ],
-    strategy:"By roughly 1:00 PM the full must-do list is done: Tiana's, Thunder, Space, Tron, Jungle, Pirates, Tiki, Haunted, Small World — plus Buzz from the nice-to-haves. That's 10 rides in a morning with minimal waiting, all driven by the rolling re-book engine.\n\nMonorail Crawl in the evening: ride the resort monorail and hop off at Polynesian, Grand Floridian, and Contemporary for a drink at each before looping back to MK for the fireworks and your two banked nighttime re-rides.\n\nHayley and Cian should also buy Multi Pass on Jul 9 @ 7 AM. Everyone buys Single Pass for Tron at the same time.\n\nIf Tron Single Pass sells out before 7 AM purchase: Tron's standby wait drops during fireworks or the final hour, but you'd trade fireworks for it. Keep the Single Pass.\n\nFree look at the MK no-Multi-Pass strategy is in the Lightning tab under 'MK No Multi Pass' if needed.",
+    strategy:"By roughly 1:00 PM the full must-do list is done: Tiana's, Thunder, Space, Tron, Jungle, Pirates, Tiki, Haunted, Small World — plus Buzz from the nice-to-haves. That's 10 rides in a morning with minimal waiting, all driven by the rolling re-book engine.\n\nMonorail Crawl in the evening: ride the resort monorail and hop off at Polynesian, Grand Floridian, and Contemporary for a drink at each before looping back to MK for the fireworks and your two banked nighttime re-rides.\n\nHayley and Cian should also buy Multi Pass on Jul 9 @ 7 AM. Everyone buys Single Pass for Tron at the same time.\n\nIf Tron Single Pass sells out before 7 AM purchase: Tron's standby wait drops during fireworks or the final hour, but you'd trade fireworks for it. Keep the Single Pass.",
     shows:[
-      {n:"MK Starlight",        t:"8:30 & 10:30 PM"},
-      {n:"Happily Ever After",  t:"10:00 PM"}
+      {n:"MK Starlight",       t:"8:30 & 10:30 PM"},
+      {n:"Happily Ever After", t:"10:00 PM"}
     ],
     ll:[
       {ty:"sp",  r:"Tron",                    w:"~10:00–10:30 AM", bd:"Jul 9 @ 7:00 AM"},
@@ -259,15 +287,14 @@ var DAYS = [
       "After Pirates → nighttime re-ride #1",
       "After Haunted → nighttime re-ride #2"
     ],
-    din:[{m:"Dinner", n:"Monorail Crawl", t:"Evening"}]
+    din:[{m:"Dinner",n:"Monorail Crawl",t:"Evening"}]
   },
-
-  // ── Jul 17  EPCOT ───────────────────────────────────────────────
+  // Jul 17 EPCOT
   { date:"17", dl:"Fri", park:"ep",
     badges:["Single Pass Day"],
-    alert: null,
-    res:"ep", crowd: 2, hours: "8:30 AM – 9:00 PM",
-    flight: null,
+    alert:null,
+    res:"ep", crowd:2, hours:"8:30 AM – 9:00 PM",
+    flight:null,
     itin:[
       {t:"8:20 AM",  x:"Walk BoardWalk → International Gateway"},
       {t:"8:30 AM",  x:"Enter at France"},
@@ -283,30 +310,29 @@ var DAYS = [
       {t:"5:00 PM",  x:"Re-enter International Gateway · drink around World Showcase"},
       {t:"9:00 PM",  x:"Luminous → stroll back to BoardWalk"}
     ],
-    strategy:"Enter via International Gateway (the back entrance right off the BoardWalk) rather than the main Epcot entrance. This puts you at France first, which is where breakfast is anyway.\n\nTest Track: standby is manageable early. Single rider is an option if the group doesn't mind splitting for one ride.\n\nMorning block completes the full ride list — Test Track, Guardians, Soarin', Figment, Seas, Gran Fiesta — by about 2 PM. Indiana Jones at 12 then Star Tours is also an option in this window if the group wants more.\n\nThe afternoon storm window in July hits reliably around 3–4 PM. Pool/rest through it and re-enter refreshed at 5 PM. World Showcase drinking: Mexico → Norway → China → Germany → Italy → America → Japan → Morocco → France → UK → Canada. Don't need to hit every pavilion — pick favorites.\n\nDVC Lounge is accessible from Epcot. Check hours.",
-    shows:[{n:"Luminous", t:"9:00 PM"}],
-    ll:[{ty:"sp", r:"Guardians of the Galaxy", w:"~10:30–11:00 AM", bd:"Jul 10 @ 7:00 AM"}],
+    strategy:"Enter via International Gateway (the back entrance right off the BoardWalk) rather than the main Epcot entrance. This puts you at France first, which is where breakfast is anyway.\n\nTest Track: standby is manageable early. Single rider is an option if the group doesn't mind splitting for one ride.\n\nMorning block completes the full ride list — Test Track, Guardians, Soarin', Figment, Seas, Gran Fiesta — by about 2 PM.\n\nThe afternoon storm window in July hits reliably around 3–4 PM. Pool/rest through it and re-enter refreshed at 5 PM. World Showcase drinking: Mexico → Norway → China → Germany → Italy → America → Japan → Morocco → France → UK → Canada.\n\nDVC Lounge is accessible from Epcot. Check hours.",
+    shows:[{n:"Luminous",t:"9:00 PM"}],
+    ll:[{ty:"sp",r:"Guardians of the Galaxy",w:"~10:30–11:00 AM",bd:"Jul 10 @ 7:00 AM"}],
     roll:[],
     din:[
-      {m:"Breakfast", n:"Les Halles — France Pavilion", t:"9:00 AM"},
-      {m:"Lunch",     n:"World Showcase",               t:"~12:45 PM"},
-      {m:"Dinner",    n:"Cake Bake",                    t:"TBD",     loc:"Non-Park"}
+      {m:"Breakfast",n:"Les Halles — France Pavilion",t:"9:00 AM"},
+      {m:"Lunch",    n:"World Showcase",              t:"~12:45 PM"},
+      {m:"Dinner",   n:"Cake Bake",                   t:"TBD",     loc:"Non-Park"}
     ]
   },
-
-  // ── Jul 18  HOLLYWOOD STUDIOS (main HS day) ─────────────────────
+  // Jul 18 HOLLYWOOD STUDIOS main
   { date:"18", dl:"Sat", park:"hs",
     badges:["Early Entry 8:30 AM","Multi Pass Day"],
     alert:"Hayley &amp; Cian also buy Multi Pass on Jul 11 @ 7 AM. Rise is optional — decide before booking day.",
-    res:"hs", crowd: 3, hours: "8:30 AM – 9:00 PM",
-    flight: null,
+    res:"hs", crowd:3, hours:"8:30 AM – 9:00 PM",
+    flight:null,
     itin:[
       {t:"8:00 AM",  x:"Arrive, tap in for 8:30 Early Entry"},
       {t:"8:30 AM",  x:"Slinky Dog Dash standby (Early Entry — best free shot at it)"},
-      {t:"9:30 AM",  x:"Muppets Coaster (MP T1) → rebook Runaway Railway",  crit:"⚡"},
+      {t:"9:30 AM",  x:"Rock 'n' Roller Coaster / Muppets (MP T1) → rebook Runaway Railway", crit:"Critical"},
       {t:"10:00 AM", x:"Rise of the Resistance (Single Pass window)"},
-      {t:"10:45 AM", x:"Tower of Terror (MP T2) → rebook nighttime ride",   crit:"⚡"},
-      {t:"11:30 AM", x:"Toy Story Mania (MP T2) → rebook one more",         crit:"⚡"},
+      {t:"10:45 AM", x:"Tower of Terror (MP T2) → rebook nighttime ride",   crit:"Critical"},
+      {t:"11:30 AM", x:"Toy Story Mania (MP T2) → rebook one more",         crit:"Critical"},
       {t:"12:00 PM", x:"Star Tours"},
       {t:"12:30 PM", x:"Baseline → TuneIn Lounge → Brown Derby Lounge"},
       {t:"~2:30 PM", x:"Back to BoardWalk — afternoon break"},
@@ -314,15 +340,15 @@ var DAYS = [
     ],
     strategy:"Muppets coaster, Tower, and Rise all share the Sunset Boulevard / Echo Lake real estate — very little backtracking in the morning. The whole must-do list (Muppets, Tower, Toy Story, Star Tours, plus Slinky and Rise if grabbed) is done by noon.\n\nKeep using the rolling re-book engine after Toy Story Mania — on a Multi Pass day you can keep stacking one-at-a-time bookings. If the group wants to re-ride the coaster or Tower at night, book the window midday for an evening slot.\n\nHS is a short walk or boat ride from the BoardWalk, so the mid-day break and return trip are easy. Boat from Epcot/Hollywood Studios dock takes about 10 minutes.\n\nNight shows on Sunset Boulevard: stake a spot early or ride during the show when standby waits drop. Fantasmic has two showings — if first is crowded, second showing is often easier to get into.",
     shows:[
-      {n:"Movie Magic",                   t:"8:30 PM"},
-      {n:"Fantasmic!",                    t:"9:05 PM"},
-      {n:"Wonderful World of Animation",  t:"9:00 PM"}
+      {n:"Movie Magic",                  t:"8:30 PM"},
+      {n:"Fantasmic!",                   t:"9:05 PM"},
+      {n:"Wonderful World of Animation", t:"9:00 PM"}
     ],
     ll:[
-      {ty:"sp",  r:"Rise of the Resistance",           w:"~9:30–10:30 AM",  bd:"Jul 11 @ 7:00 AM"},
+      {ty:"sp",  r:"Rise of the Resistance",            w:"~9:30–10:30 AM",  bd:"Jul 11 @ 7:00 AM"},
       {ty:"mp1", r:"Rock 'n' Roller Coaster (Muppets)", w:"~9:30–10:00 AM",  bd:"Jul 11 @ 7:00 AM"},
-      {ty:"mp2", r:"Tower of Terror",                   w:"~10:45–11:00 AM", bd:"Jul 11 @ 7:00 AM"},
-      {ty:"mp2", r:"Toy Story Mania",                   w:"~11:00–11:30 AM", bd:"Jul 11 @ 7:00 AM"}
+      {ty:"mp2", r:"Tower of Terror",                    w:"~10:45–11:00 AM", bd:"Jul 11 @ 7:00 AM"},
+      {ty:"mp2", r:"Toy Story Mania",                    w:"~11:00–11:30 AM", bd:"Jul 11 @ 7:00 AM"}
     ],
     roll:[
       "After Muppets Coaster → book Runaway Railway",
@@ -330,130 +356,86 @@ var DAYS = [
       "After Toy Story Mania → book nighttime re-ride"
     ],
     din:[
-      {m:"Lunch",  n:"Cake Bake",     t:"~12:30 PM", loc:"Non-Park"},
-      {m:"Dinner", n:"Summer House?", t:"TBD",        loc:"Non-Park"}
+      {m:"Lunch",  n:"Cake Bake",    t:"~12:30 PM", loc:"Non-Park"},
+      {m:"Dinner", n:"Summer House", t:"TBD",        loc:"Non-Park"}
     ]
   },
-
-  // ── Jul 19  ANIMAL KINGDOM ──────────────────────────────────────
+  // Jul 19 ANIMAL KINGDOM
   { date:"19", dl:"Sun", park:"ak",
     badges:["Drop Locker at Front Desk","Last Day"],
-    alert: null,
-    res:"ak", crowd: 3, hours: "7:30 AM – 6:00 PM",
-    flight:{
-      num:"WN 1482", conf:"CC3FGY",
-      dep:"7:55 AM", depApt:"MCO", depCity:"Orlando",
-      arr:"10:50 AM", arrApt:"MHT", arrCity:"Manchester"
-    },
+    alert:null,
+    res:"ak", crowd:3, hours:"7:30 AM – 6:00 PM",
+    flight:{num:"WN 1482",conf:"CC3FGY",dep:"7:55 AM",depApt:"MCO",depCity:"Orlando",arr:"10:50 AM",arrApt:"MHT",arrCity:"Manchester"},
     itin:[
       {t:"Morning",   x:"Drop Owners Locker at front desk"},
       {t:"Rope Drop", x:"Animal Kingdom"},
       {t:"Afternoon", x:"Head to MCO"},
-      {t:"7:55 AM",   x:"Depart MCO — WN 1482", crit:"✈️ FLIGHT"},
+      {t:"7:55 AM",   x:"Depart MCO — WN 1482", crit:"Flight"},
       {t:"10:50 AM",  x:"Arrive MHT"}
     ],
-    strategy: null,
-    shows:[], ll:[], roll:[],
-    din:[]
+    strategy:null, shows:[], ll:[], roll:[], din:[]
   }
 ];
 
+// ── PACKING TEMPLATE ────────────────────────────────────────────────
 var PACKING_TEMPLATE = [
-  { cat:"Clothes", items:[
-    {n:"Underwear",      qty:7, l:false, done:false},
-    {n:"Socks",          qty:7, l:false, done:false},
-    {n:"Shorts",         qty:6, l:false, done:false},
-    {n:"T-Shirts",       qty:7, l:false, done:false},
-    {n:"Jeans",          qty:1, l:false, done:false},
-    {n:"Short Sleeves",  qty:2, l:false, done:false},
-    {n:"Long Sleeves",   qty:1, l:false, done:false},
-    {n:"Dress Shirts",   qty:1, l:false, done:false},
-    {n:"Belt",           qty:1, l:false, done:false},
-    {n:"Bathing Suits",  qty:2, l:false, done:false},
-    {n:"PJs",            qty:1, l:false, done:false},
-    {n:"Slippers",       qty:1, l:false, done:false},
-    {n:"Swim Shoes",     qty:1, l:false, done:false},
-    {n:"Sneakers",       qty:1, l:false, done:false},
-    {n:"Sweat Shirts",   qty:0, l:true,  done:false},
-    {n:"Crocs",          qty:0, l:true,  done:false}
+  {cat:"Clothes",items:[
+    {n:"Underwear",qty:7,l:false,done:false},{n:"Socks",qty:7,l:false,done:false},
+    {n:"Shorts",qty:6,l:false,done:false},{n:"T-Shirts",qty:7,l:false,done:false},
+    {n:"Jeans",qty:1,l:false,done:false},{n:"Short Sleeves",qty:2,l:false,done:false},
+    {n:"Long Sleeves",qty:1,l:false,done:false},{n:"Dress Shirts",qty:1,l:false,done:false},
+    {n:"Belt",qty:1,l:false,done:false},{n:"Bathing Suits",qty:2,l:false,done:false},
+    {n:"PJs",qty:1,l:false,done:false},{n:"Slippers",qty:1,l:false,done:false},
+    {n:"Swim Shoes",qty:1,l:false,done:false},{n:"Sneakers",qty:1,l:false,done:false},
+    {n:"Sweat Shirts",qty:0,l:true,done:false},{n:"Crocs",qty:0,l:true,done:false}
   ]},
-  { cat:"Electronics", items:[
-    {n:"AirPods",        qty:1, l:false, done:false},
-    {n:"Phone",          qty:1, l:false, done:false},
-    {n:"Watch",          qty:1, l:false, done:false},
-    {n:"Watch Cable",    qty:1, l:false, done:false},
-    {n:"Lightning Cables",qty:2,l:false, done:false},
-    {n:"Portable Charger",qty:1,l:false, done:false},
-    {n:"Power Strip",    qty:0, l:true,  done:false},
-    {n:"Roku + Cables",  qty:0, l:true,  done:false},
-    {n:"Bluetooth Speaker",qty:0,l:true, done:false}
+  {cat:"Electronics",items:[
+    {n:"AirPods",qty:1,l:false,done:false},{n:"Phone",qty:1,l:false,done:false},
+    {n:"Watch",qty:1,l:false,done:false},{n:"Watch Cable",qty:1,l:false,done:false},
+    {n:"Lightning Cables",qty:2,l:false,done:false},{n:"Portable Charger",qty:1,l:false,done:false},
+    {n:"Power Strip",qty:0,l:true,done:false},{n:"Roku + Cables",qty:0,l:true,done:false},
+    {n:"Bluetooth Speaker",qty:0,l:true,done:false}
   ]},
-  { cat:"Misc", items:[
-    {n:"Sunglasses",     qty:1, l:false, done:false},
-    {n:"Cash for Tips",  qty:1, l:false, done:false},
-    {n:"Gum for Plane",  qty:1, l:false, done:false},
-    {n:"Yeti",           qty:1, l:false, done:false},
-    {n:"Over the Door Rack",qty:0,l:true,done:false},
-    {n:"Ear Swim Plugs", qty:0, l:true,  done:false},
-    {n:"Pins / Lanyards",qty:0, l:true,  done:false},
-    {n:"Heating Pad",    qty:0, l:true,  done:false},
-    {n:"Visor",          qty:0, l:true,  done:false},
-    {n:"Hat",            qty:0, l:true,  done:false},
-    {n:"Ice Packs",      qty:0, l:true,  done:false},
-    {n:"Pool Bag",       qty:0, l:true,  done:false},
-    {n:"Ponchos",        qty:0, l:true,  done:false},
-    {n:"Sunblock",       qty:0, l:true,  done:false}
+  {cat:"Misc",items:[
+    {n:"Sunglasses",qty:1,l:false,done:false},{n:"Cash for Tips",qty:1,l:false,done:false},
+    {n:"Gum for Plane",qty:1,l:false,done:false},{n:"Yeti",qty:1,l:false,done:false},
+    {n:"Over the Door Rack",qty:0,l:true,done:false},{n:"Ear Swim Plugs",qty:0,l:true,done:false},
+    {n:"Pins / Lanyards",qty:0,l:true,done:false},{n:"Heating Pad",qty:0,l:true,done:false},
+    {n:"Visor",qty:0,l:true,done:false},{n:"Hat",qty:0,l:true,done:false},
+    {n:"Ice Packs",qty:0,l:true,done:false},{n:"Pool Bag",qty:0,l:true,done:false},
+    {n:"Ponchos",qty:0,l:true,done:false},{n:"Sunblock",qty:0,l:true,done:false}
   ]},
-  { cat:"Paperwork", items:[
-    {n:"Annual Pass Card",qty:1,l:false, done:false},
-    {n:"Magic Bands",    qty:1, l:false, done:false},
-    {n:"Boarding Passes",qty:1, l:false, done:false},
-    {n:"Gift Cards",     qty:1, l:false, done:false},
-    {n:"Credit Cards",   qty:3, l:false, done:false},
-    {n:"Insurance Card", qty:1, l:false, done:false},
-    {n:"DVC Cards",      qty:1, l:false, done:false}
+  {cat:"Paperwork",items:[
+    {n:"Annual Pass Card",qty:1,l:false,done:false},{n:"Magic Bands",qty:1,l:false,done:false},
+    {n:"Boarding Passes",qty:1,l:false,done:false},{n:"Gift Cards",qty:1,l:false,done:false},
+    {n:"Credit Cards",qty:3,l:false,done:false},{n:"Insurance Card",qty:1,l:false,done:false},
+    {n:"DVC Cards",qty:1,l:false,done:false}
   ]},
-  { cat:"Health", items:[
-    {n:"Losartan",       qty:1, l:false, done:false},
-    {n:"Amdolpine",      qty:1, l:false, done:false},
-    {n:"Creon",          qty:1, l:false, done:false},
-    {n:"Pepcid AC",      qty:1, l:false, done:false},
-    {n:"Advil",          qty:1, l:false, done:false},
-    {n:"Tylenol",        qty:1, l:false, done:false},
-    {n:"Excedrin",       qty:1, l:false, done:false},
-    {n:"Mylanta",        qty:1, l:false, done:false},
-    {n:"Pepto",          qty:1, l:false, done:false},
-    {n:"Travel Tums",    qty:1, l:false, done:false},
-    {n:"Gax-X",          qty:1, l:false, done:false},
-    {n:"Sudafed",        qty:1, l:false, done:false},
-    {n:"Benedryl",       qty:1, l:false, done:false},
-    {n:"Chapstick",      qty:1, l:false, done:false},
-    {n:"Pill Holders",   qty:2, l:false, done:false},
-    {n:"Travel Tissues", qty:1, l:false, done:false},
-    {n:"Tums",           qty:0, l:true,  done:false},
-    {n:"Bandaids",       qty:0, l:true,  done:false},
-    {n:"Thermometer",    qty:0, l:true,  done:false}
+  {cat:"Health",items:[
+    {n:"Losartan",qty:1,l:false,done:false},{n:"Amdolpine",qty:1,l:false,done:false},
+    {n:"Creon",qty:1,l:false,done:false},{n:"Pepcid AC",qty:1,l:false,done:false},
+    {n:"Advil",qty:1,l:false,done:false},{n:"Tylenol",qty:1,l:false,done:false},
+    {n:"Excedrin",qty:1,l:false,done:false},{n:"Mylanta",qty:1,l:false,done:false},
+    {n:"Pepto",qty:1,l:false,done:false},{n:"Travel Tums",qty:1,l:false,done:false},
+    {n:"Gas-X",qty:1,l:false,done:false},{n:"Sudafed",qty:1,l:false,done:false},
+    {n:"Benadryl",qty:1,l:false,done:false},{n:"Chapstick",qty:1,l:false,done:false},
+    {n:"Pill Holders",qty:2,l:false,done:false},{n:"Travel Tissues",qty:1,l:false,done:false},
+    {n:"Tums",qty:0,l:true,done:false},{n:"Bandaids",qty:0,l:true,done:false},
+    {n:"Thermometer",qty:0,l:true,done:false}
   ]},
-  { cat:"Toiletries", items:[
-    {n:"Beard Trimmer",  qty:1, l:false, done:false},
-    {n:"Deodorant",      qty:0, l:true,  done:false},
-    {n:"Toothbrush",     qty:0, l:true,  done:false},
-    {n:"Toothpaste",     qty:0, l:true,  done:false},
-    {n:"Mouthwash",      qty:0, l:true,  done:false},
-    {n:"Hair Gel",       qty:0, l:true,  done:false},
-    {n:"Comb",           qty:0, l:true,  done:false},
-    {n:"Razors",         qty:0, l:true,  done:false},
-    {n:"Shaving Cream",  qty:0, l:true,  done:false},
-    {n:"Gold Bond",      qty:0, l:true,  done:false},
-    {n:"Qtips",          qty:0, l:true,  done:false},
-    {n:"Nail Clippers",  qty:0, l:true,  done:false},
-    {n:"Lint Roller",    qty:0, l:true,  done:false},
-    {n:"Salonpas",       qty:0, l:true,  done:false},
-    {n:"Laundry Bag",    qty:0, l:true,  done:false},
-    {n:"Wrinkle Release",qty:0, l:true,  done:false}
+  {cat:"Toiletries",items:[
+    {n:"Beard Trimmer",qty:1,l:false,done:false},{n:"Deodorant",qty:0,l:true,done:false},
+    {n:"Toothbrush",qty:0,l:true,done:false},{n:"Toothpaste",qty:0,l:true,done:false},
+    {n:"Mouthwash",qty:0,l:true,done:false},{n:"Hair Gel",qty:0,l:true,done:false},
+    {n:"Comb",qty:0,l:true,done:false},{n:"Razors",qty:0,l:true,done:false},
+    {n:"Shaving Cream",qty:0,l:true,done:false},{n:"Gold Bond",qty:0,l:true,done:false},
+    {n:"Qtips",qty:0,l:true,done:false},{n:"Nail Clippers",qty:0,l:true,done:false},
+    {n:"Lint Roller",qty:0,l:true,done:false},{n:"Salonpas",qty:0,l:true,done:false},
+    {n:"Laundry Bag",qty:0,l:true,done:false},{n:"Wrinkle Release",qty:0,l:true,done:false}
   ]}
 ];
 
+// ── TODO TEMPLATE ────────────────────────────────────────────────────
 var TODO_TEMPLATE = [
   {n:"Book Hotel",                              when:"11 months",  done:true,  na:false},
   {n:"Change Hotels",                           when:"7 months",   done:false, na:true},
@@ -470,451 +452,533 @@ var TODO_TEMPLATE = [
   {n:"Airline Online Check-in / Boarding Pass", when:"Day before", done:false, na:false}
 ];
 
-// Load from localStorage or clone template
-var PKDATA = (function(){
-  try{ var s=localStorage.getItem('dvc_pk_26'); if(s) return JSON.parse(s); }catch(e){}
-  return JSON.parse(JSON.stringify(PACKING_TEMPLATE));
-})();
-var TDDATA = (function(){
-  try{ var s=localStorage.getItem('dvc_td_26'); if(s) return JSON.parse(s); }catch(e){}
-  return JSON.parse(JSON.stringify(TODO_TEMPLATE));
-})();
-
-
+// ── LL PARKS ─────────────────────────────────────────────────────────
 var LL_PARKS = [
-  { nm:"Magic Kingdom", clr:"#6B4FA0", bd:"Jul 9 @ 7:00 AM ET",
-    items:[
-      {ty:"sp", r:"Tron",                    w:"~10:00–10:30 AM"},
-      {ty:"mp1",r:"Jungle Cruise",            w:"~10:30–11:00 AM"},
-      {ty:"mp2",r:"Pirates of the Caribbean", w:"~11:00–11:30 AM"},
-      {ty:"mp2",r:"Haunted Mansion",          w:"~12:00–12:30 PM"}
-    ],
-    roll:["After Jungle → book Buzz Lightyear","After Pirates → nighttime re-ride #1","After Haunted → nighttime re-ride #2"]
+  {nm:"Magic Kingdom",clr:"#6B4FA0",bd:"Jul 9 @ 7:00 AM ET",
+   items:[
+     {ty:"sp", r:"Tron",                    w:"~10:00–10:30 AM"},
+     {ty:"mp1",r:"Jungle Cruise",            w:"~10:30–11:00 AM"},
+     {ty:"mp2",r:"Pirates of the Caribbean", w:"~11:00–11:30 AM"},
+     {ty:"mp2",r:"Haunted Mansion",          w:"~12:00–12:30 PM"}
+   ],
+   roll:["After Jungle → book Buzz Lightyear","After Pirates → nighttime re-ride #1","After Haunted → nighttime re-ride #2"]
   },
-  { nm:"EPCOT", clr:"#0077A8", bd:"Jul 10 @ 7:00 AM ET",
-    items:[{ty:"sp",r:"Guardians of the Galaxy",w:"~10:30–11:00 AM"}],
-    roll:[]
+  {nm:"EPCOT",clr:"#0077A8",bd:"Jul 10 @ 7:00 AM ET",
+   items:[{ty:"sp",r:"Guardians of the Galaxy",w:"~10:30–11:00 AM"}],
+   roll:[]
   },
-  { nm:"Hollywood Studios", clr:"#C24530", bd:"Jul 11 @ 7:00 AM ET",
-    items:[
-      {ty:"sp", r:"Rise of the Resistance",           w:"~9:30–10:30 AM"},
-      {ty:"mp1",r:"Rock 'n' Roller Coaster (Muppets)", w:"~9:30–10:00 AM"},
-      {ty:"mp2",r:"Tower of Terror",                   w:"~10:45–11:00 AM"},
-      {ty:"mp2",r:"Toy Story Mania",                   w:"~11:00–11:30 AM"}
-    ],
-    roll:["After Muppets Coaster → book Runaway Railway","After Tower of Terror → book Star Tours or Slinky","After Toy Story Mania → book nighttime re-ride"]
+  {nm:"Hollywood Studios",clr:"#C24530",bd:"Jul 11 @ 7:00 AM ET",
+   items:[
+     {ty:"sp", r:"Rise of the Resistance",            w:"~9:30–10:30 AM"},
+     {ty:"mp1",r:"Rock 'n' Roller Coaster (Muppets)", w:"~9:30–10:00 AM"},
+     {ty:"mp2",r:"Tower of Terror",                    w:"~10:45–11:00 AM"},
+     {ty:"mp2",r:"Toy Story Mania",                    w:"~11:00–11:30 AM"}
+   ],
+   roll:["After Muppets Coaster → book Runaway Railway","After Tower of Terror → book Star Tours or Slinky","After Toy Story Mania → book nighttime re-ride"]
   }
 ];
 
-// ── STATE ───────────────────────────────────────────────────────────
-var AD  = 0;   // start on travel day so flight section is visible
-var TAB = "days";
-var OPEN = {flight:true, res:false, itin:true, details:false, ll:false, din:false, shows:false};
-var CHK  = {};
-var PLAN = "packing";
-var ADDING_CAT = -1;
-var ADDING_TODO = false;
+// ── STATE ─────────────────────────────────────────────────────────────
+var AD=0, TAB="days", PLAN="packing", ADDING_CAT=-1, ADDING_TODO=false;
+var DEL_PK={}, DEL_TD={};
+var OPEN={};
 
-function sd(i){ AD=i; OPEN={flight:true,res:false,itin:true,details:false,ll:false,din:false,shows:false}; render(); }
-function st(t){ TAB=t; render(); }
-function tg(k){ OPEN[k]=!OPEN[k]; render(); }
-function tc(k){ CHK[k]=!CHK[k]; render(); }
-function sp(p){ PLAN=p; render(); }
+function defaultOpen(day){
+  var isTRV=day.park==="trv", hasLL=day.ll&&day.ll.length>0;
+  return {flight:!!day.flight, itin:true, details:false, ll:hasLL&&!isTRV, din:false, shows:false};
+}
+OPEN=defaultOpen(DAYS[0]);
 
-function savePK(){ try{localStorage.setItem('dvc_pk_26',JSON.stringify(PKDATA));}catch(e){} }
-function pk_chk(c,i){ PKDATA[c].items[i].done=!PKDATA[c].items[i].done; savePK(); render(); }
-function pk_inc(c,i){ PKDATA[c].items[i].qty++; savePK(); render(); }
-function pk_dec(c,i){ if(PKDATA[c].items[i].qty>1) PKDATA[c].items[i].qty--; savePK(); render(); }
-function pk_del(c,i){ PKDATA[c].items.splice(i,1); savePK(); render(); }
-function pk_add(c){ ADDING_CAT=c; render(); setTimeout(function(){var el=document.getElementById('pk-inp');if(el)el.focus();},50); }
-function pk_ok(c){ var el=document.getElementById('pk-inp'); if(!el||!el.value.trim()) return; PKDATA[c].items.push({n:el.value.trim(),qty:1,l:false,done:false}); ADDING_CAT=-1; savePK(); render(); }
-function pk_cancel(){ ADDING_CAT=-1; render(); }
-function pk_reset(){ if(confirm('Reset packing list to defaults?')){PKDATA=JSON.parse(JSON.stringify(PACKING_TEMPLATE));savePK();render();} }
-function pk_inp_key(e,c){ if(e.key==='Enter') pk_ok(c); if(e.key==='Escape') pk_cancel(); }
+// localStorage
+var PKDATA=(function(){try{var s=localStorage.getItem('dvc_pk_26');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(PACKING_TEMPLATE));})();
+var TDDATA=(function(){try{var s=localStorage.getItem('dvc_td_26');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(TODO_TEMPLATE));})();
 
-function saveTD(){ try{localStorage.setItem('dvc_td_26',JSON.stringify(TDDATA));}catch(e){} }
-function td_chk(i){ if(!TDDATA[i].na){TDDATA[i].done=!TDDATA[i].done; saveTD(); render();} }
-function td_na(i){ TDDATA[i].na=!TDDATA[i].na; if(TDDATA[i].na) TDDATA[i].done=false; saveTD(); render(); }
-function td_del(i){ TDDATA.splice(i,1); saveTD(); render(); }
-function td_add(){ ADDING_TODO=true; render(); setTimeout(function(){var el=document.getElementById('td-inp');if(el)el.focus();},50); }
-function td_ok(){ var el=document.getElementById('td-inp'); if(!el||!el.value.trim()) return; TDDATA.push({n:el.value.trim(),when:'',done:false,na:false}); ADDING_TODO=false; saveTD(); render(); }
-function td_cancel(){ ADDING_TODO=false; render(); }
-function td_reset(){ if(confirm('Reset to-do list to defaults?')){TDDATA=JSON.parse(JSON.stringify(TODO_TEMPLATE));saveTD();render();} }
-function td_inp_key(e){ if(e.key==='Enter') td_ok(); if(e.key==='Escape') td_cancel(); }
+// ── ACTIONS ───────────────────────────────────────────────────────────
+function sd(i){DEL_PK={};DEL_TD={};AD=i;OPEN=defaultOpen(DAYS[i]);render();}
+function st(t){DEL_PK={};DEL_TD={};TAB=t;render();}
+function tg(k){OPEN[k]=!OPEN[k];render();}
+function sp(p){DEL_PK={};DEL_TD={};PLAN=p;render();}
 
-function pk_save_template(){ if(confirm('Save current list as your template for future trips?')){localStorage.setItem('dvc_pk_master',JSON.stringify(PKDATA));alert('Template saved!');} }
-function td_save_template(){ if(confirm('Save current to-do list as your template for future trips?')){localStorage.setItem('dvc_td_master',JSON.stringify(TDDATA));alert('Template saved!');} }
-function tagCls(ty){ return ty==="sp"?"sp":ty==="mp1"?"mp1":"mp2"; }
-function tagLbl(ty){ return ty==="sp"?"Single Pass":ty==="mp1"?"Multi Pass T1":"Multi Pass T2"; }
+function savePK(){try{localStorage.setItem('dvc_pk_26',JSON.stringify(PKDATA));}catch(e){}}
+function pk_chk(c,i){PKDATA[c].items[i].done=!PKDATA[c].items[i].done;savePK();render();}
+function pk_inc(c,i){PKDATA[c].items[i].qty++;savePK();render();}
+function pk_dec(c,i){if(PKDATA[c].items[i].qty>1)PKDATA[c].items[i].qty--;savePK();render();}
+function pk_del(c,i){var k=c+'-'+i;if(DEL_PK[k]){PKDATA[c].items.splice(i,1);delete DEL_PK[k];savePK();}else{DEL_PK={};DEL_PK[k]=true;}render();}
+function pk_add(c){ADDING_CAT=c;render();setTimeout(function(){var e=document.getElementById('pk-inp');if(e)e.focus();},50);}
+function pk_ok(c){var e=document.getElementById('pk-inp');if(!e||!e.value.trim())return;PKDATA[c].items.push({n:e.value.trim(),qty:1,l:false,done:false});ADDING_CAT=-1;savePK();render();}
+function pk_cancel(){ADDING_CAT=-1;render();}
+function pk_inp_key(e,c){if(e.key==='Enter')pk_ok(c);if(e.key==='Escape')pk_cancel();}
+function pk_reset(){if(confirm('Reset packing list to defaults?')){PKDATA=JSON.parse(JSON.stringify(PACKING_TEMPLATE));savePK();render();}}
+function pk_save_template(){if(confirm('Save current list as template for future trips?')){localStorage.setItem('dvc_pk_master',JSON.stringify(PKDATA));alert('Template saved!');}}
 
-function crowdDots(val){
-  if(val===null) return "<span class='pi-tbd'>TBD</span>";
-  var s="<div class='crowd-dots'>";
-  for(var i=1;i<=10;i++){
-    var fill = i<=val ? (val<=3?"#22c55e":val<=6?"#f59e0b":"#ef4444") : "#E5E1D8";
-    s+="<div class='cdot' style='background:"+fill+"'></div>";
-  }
-  return s+"</div><div style='font-size:12px;color:var(--muted);margin-top:2px'>"+val+" / 10</div>";
+function saveTD(){try{localStorage.setItem('dvc_td_26',JSON.stringify(TDDATA));}catch(e){}}
+function td_chk(i){if(!TDDATA[i].na){TDDATA[i].done=!TDDATA[i].done;saveTD();render();}}
+function td_na(i){TDDATA[i].na=!TDDATA[i].na;if(TDDATA[i].na)TDDATA[i].done=false;saveTD();render();}
+function td_del(i){if(DEL_TD[i]){TDDATA.splice(i,1);delete DEL_TD[i];saveTD();}else{DEL_TD={};DEL_TD[i]=true;}render();}
+function td_add(){ADDING_TODO=true;render();setTimeout(function(){var e=document.getElementById('td-inp');if(e)e.focus();},50);}
+function td_ok(){var e=document.getElementById('td-inp');if(!e||!e.value.trim())return;TDDATA.push({n:e.value.trim(),when:'',done:false,na:false});ADDING_TODO=false;saveTD();render();}
+function td_cancel(){ADDING_TODO=false;render();}
+function td_inp_key(e){if(e.key==='Enter')td_ok();if(e.key==='Escape')td_cancel();}
+function td_reset(){if(confirm('Reset to-do list to defaults?')){TDDATA=JSON.parse(JSON.stringify(TODO_TEMPLATE));saveTD();render();}}
+function td_save_template(){if(confirm('Save current to-do list as template?')){localStorage.setItem('dvc_td_master',JSON.stringify(TDDATA));alert('Template saved!');}}
+
+// ── HELPERS ───────────────────────────────────────────────────────────
+function tagCls(ty){return ty==='sp'?'sp':ty==='mp1'?'mp1':'mp2';}
+function tagLbl(ty){return ty==='sp'?'Single Pass':ty==='mp1'?'Multi Pass T1':'Multi Pass T2';}
+
+function crowdPill(v){
+  if(v===null)return '<span style="color:var(--muted);font-size:12px;font-style:italic">TBD</span>';
+  var cls=v<=3?'cpl-lt':v<=6?'cpl-md':'cpl-hv';
+  var lbl=v<=3?'Light':v<=6?'Moderate':'Heavy';
+  return '<span class="crowd-pill '+cls+'">'+lbl+'</span><span style="font-size:10px;color:var(--muted);margin-left:3px">'+v+'/10</span>';
 }
 
-// ── RENDER ──────────────────────────────────────────────────────────
-function render(){
-  var day=DAYS[AD], pk=PARKS[day.park];
+function firstSentence(s){
+  if(!s)return'';
+  var m=s.match(/^([^.!?]+[.!?])/);
+  return m?m[1].trim():s.split('\n')[0].trim();
+}
 
-  // Strip
-  var strip="<div class='strip-wrap'><div class='strip'>";
+function isFlightRow(it){
+  return(it.crit&&(it.crit.toLowerCase().includes('flight')))||/^(Depart|Arrive)\b/.test(it.x);
+}
+
+function parseMinutes(ts){
+  var m=ts.match(/^(\d+):(\d+)\s*(AM|PM)/i);if(!m)return -1;
+  var h=parseInt(m[1]),mn=parseInt(m[2]),ap=m[3].toUpperCase();
+  if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;
+  return h*60+mn;
+}
+
+function getNextUpIdx(day){
+  var dates=['2026-07-14','2026-07-15','2026-07-16','2026-07-17','2026-07-18','2026-07-19'];
+  var idx=['14','15','16','17','18','19'].indexOf(day.date);
+  if(idx===-1)return -1;
+  var now=new Date();
+  // Approximate Eastern time (EDT = UTC-4 in July)
+  var et=new Date(now.getTime()-4*60*60*1000);
+  var todayET=et.getUTCFullYear()+'-'+String(et.getUTCMonth()+1).padStart(2,'0')+'-'+String(et.getUTCDate()).padStart(2,'0');
+  if(todayET!==dates[idx])return -1;
+  var nowMin=et.getUTCHours()*60+et.getUTCMinutes();
+  for(var i=0;i<day.itin.length;i++){
+    var mn=parseMinutes(day.itin[i].t);
+    if(mn!==-1&&mn>=nowMin)return i;
+  }
+  return day.itin.length-1;
+}
+
+// ── ICONS ─────────────────────────────────────────────────────────────
+var IC={
+  // Nav (22px)
+  calendar:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="9" x2="21" y2="9"/></svg>',
+  list:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+  zap:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  checksq:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+  // Card (18px)
+  plane:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19.5 2.5S16 1 14.5 2.5L11 6 2.8 4.2 1.4 5.6l6.5 5.5-2.9 3.4-2.8.5-.9.9 2.3 2.3 2.3 2.3.9-.9.5-2.8 3.4-2.9 5.5 6.5 1.4-1.4z"/></svg>',
+  route:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
+  bolt:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>',
+  book:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  fork:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>',
+  star:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  ticket:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v2z"/><line x1="12" y1="5" x2="12" y2="19"/></svg>',
+  // Small
+  warn:'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  check:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  checkw:'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  chev:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>',
+  plxs:'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19.5 2.5S16 1 14.5 2.5L11 6 2.8 4.2 1.4 5.6l6.5 5.5-2.9 3.4-2.8.5-.9.9 2.3 2.3 2.3 2.3.9-.9.5-2.8 3.4-2.9 5.5 6.5 1.4-1.4z"/></svg>',
+  plmid:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19.5 2.5S16 1 14.5 2.5L11 6 2.8 4.2 1.4 5.6l6.5 5.5-2.9 3.4-2.8.5-.9.9 2.3 2.3 2.3 2.3.9-.9.5-2.8 3.4-2.9 5.5 6.5 1.4-1.4z"/></svg>',
+  arr:'<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>'
+};
+
+// ── RENDER STRIP ──────────────────────────────────────────────────────
+function renderStrip(){
+  if(TAB!=='days'){document.getElementById('strip-wrap').innerHTML='';return;}
+  var h='<div class="strip-wrap"><div class="strip">';
   for(var i=0;i<DAYS.length;i++){
-    var d=DAYS[i], p=PARKS[d.park];
-    strip+="<div class='dpill"+(i===AD?" on":"")+"' onclick='sd("+i+")'>"
-          +"<div class='p-day'>"+d.dl+"</div>"
-          +"<div class='p-date'>"+d.date+"</div>"
-          +"<div class='p-dot' style='background:"+p.color+"'></div>"
-          +"<div class='p-pk'>"+p.short+"</div></div>";
+    var d=DAYS[i],p=PARKS[d.park];
+    h+='<div class="dpill'+(i===AD?' on':'')+'" onclick="sd('+i+')">'
+      +'<div class="p-day">'+d.dl+'</div>'
+      +'<div class="p-date">'+d.date+'</div>'
+      +'<div class="p-bar" style="background:'+p.color+'"></div>'
+      +'<div class="p-pk">'+p.short+'</div></div>';
   }
-  strip+="</div></div>";
-  document.getElementById("strip").innerHTML=(TAB==="days")?strip:"";
+  h+='</div></div>';
+  document.getElementById('strip-wrap').innerHTML=h;
+}
 
-  var out="";
+// ── RENDER DAYS ───────────────────────────────────────────────────────
+function renderDays(){
+  var day=DAYS[AD],pk=PARKS[day.park],rp=PARKS[day.res];
+  var o='';
 
-  if(TAB==="days"){
-    // Hero
-    out+="<div class='hero' style='background:"+pk.color+"'>"
-        +"<div class='h-date'>Jul "+day.date+" \u00b7 "+day.dl+"</div>"
-        +"<div class='h-park'>"+pk.e+" "+pk.name+"</div>"
-        +"<div class='h-sub'>Boardwalk Villa</div>"
-        +"<div class='h-badges'>";
-    for(var b=0;b<day.badges.length;b++) out+="<span class='badge'>"+day.badges[b]+"</span>";
-    out+="</div></div>";
+  // Hero
+  o+='<div class="hero">';
+  o+='<div class="hero-body" style="background:'+pk.color+'">';
+  o+='<div class="h-date">Jul '+day.date+' &middot; '+day.dl+'</div>';
+  o+='<div class="h-park">'+pk.name+'</div>';
+  o+='<div class="h-resort">Boardwalk Villa &middot; 1BR</div>';
+  o+='<div class="h-badges">';
+  for(var b=0;b<day.badges.length;b++) o+='<span class="badge">'+day.badges[b]+'</span>';
+  o+='</div></div>';
+  if(day.alert){
+    o+='<div class="hero-alert">'+IC.warn+'<div class="hero-alert-txt">'+day.alert+'</div></div>';
+  }
+  o+='</div>';
 
-    // Park info bar (hours + crowd) — only for park days
-    if(day.park!=="trv"){
-      out+="<div class='park-info'>"
-          +"<div class='pi-cell'><div class='pi-label'>Park Hours</div>"
-          +(day.hours?"<div class='pi-val'>"+day.hours+"</div>":"<div class='pi-tbd'>TBD</div>")
-          +"</div>"
-          +"<div class='pi-cell'><div class='pi-label'>Crowd Level</div>"
-          +crowdDots(day.crowd)
-          +"</div></div>";
+  // Info bar
+  o+='<div class="info-bar">';
+  o+='<div class="ib-cell"><div class="ib-lbl">Hours</div><div class="ib-val">'+(day.hours||'TBD')+'</div></div>';
+  o+='<div class="ib-cell"><div class="ib-lbl">Crowd</div><div class="ib-val">'+crowdPill(day.crowd)+'</div></div>';
+  o+='<div class="ib-cell"><div class="ib-lbl">Reservation</div>';
+  o+='<div class="ib-val"><div class="ib-res"><div class="ib-res-dot" style="background:'+rp.color+'"></div>';
+  o+='<span style="color:'+rp.color+';font-weight:700">'+rp.short+'</span>'+IC.check+'</div></div></div>';
+  o+='</div>';
+
+  // Flight card
+  if(day.flight){
+    var f=day.flight;
+    o+='<div class="card">';
+    o+='<div class="card-hd" onclick="tg(\'flight\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:#EFF6FF;color:#1E40AF">'+IC.plane+'</div>';
+    o+='<div><div class="card-title">Flight</div><div class="card-sub">'+f.num+' &middot; '+f.conf+'</div></div></div>';
+    o+='<div class="chev'+(OPEN.flight?' open':'')+'">' +IC.chev+'</div></div>';
+    if(OPEN.flight){
+      o+='<div class="card-body"><div class="flt-grid">';
+      o+='<div class="flt-side"><div class="flt-apt">'+f.depApt+'</div><div class="flt-city">'+f.depCity+'</div><div class="flt-time">'+f.dep+'</div><div class="flt-date">Jul '+day.date+'</div></div>';
+      o+='<div class="flt-mid"><div class="flt-line"><div class="flt-dash"></div>'+IC.plmid+'<div class="flt-dash"></div></div><div class="flt-carrier">Southwest</div></div>';
+      o+='<div class="flt-side right"><div class="flt-apt">'+f.arrApt+'</div><div class="flt-city">'+f.arrCity+'</div><div class="flt-time">'+f.arr+'</div><div class="flt-date">Jul '+day.date+'</div></div>';
+      o+='</div><div class="flt-meta">';
+      o+='<div class="flt-meta-cell"><div class="flt-mlbl">Flight</div><div class="flt-mval">'+f.num+'</div></div>';
+      o+='<div class="flt-meta-cell"><div class="flt-mlbl">Confirmation</div><div class="flt-mval">'+f.conf+'</div></div>';
+      o+='</div></div>';
     }
-
-    // Alert
-    if(day.alert) out+="<div class='alert'><strong>\u26a0 Heads Up</strong>"+day.alert+"</div>";
-
-    // Park Reservation card
-    var resPk=PARKS[day.res];
-    out+="<div class='card'>"
-        +"<div class='card-hd' onclick=\"tg('res')\">"
-        +"<div class='card-lbl'><div class='card-icon' style='background:#F0F4FF'>\uD83C\uDFAB</div>"
-        +"<div><div class='card-title'>Park Reservation</div>"
-        +"<div class='card-sub'>"+resPk.name+"</div></div></div>"
-        +"<div class='chev"+(OPEN.res?" open":"")+"'>\u25b6</div></div>";
-    if(OPEN.res){
-      out+="<div class='card-body'>"
-          +"<div class='din-row' style='gap:14px;align-items:center'>"
-          +"<div style='width:12px;height:12px;border-radius:50%;background:"+resPk.color+";flex-shrink:0'></div>"
-          +"<div><div class='din-name'>"+resPk.name+"</div>"
-          +"<div class='din-time'>Jul "+day.date+" &nbsp;\u00b7&nbsp; Status: Confirmed</div></div>"
-          +"</div></div>";
-    }
-    out+="</div>";
-    if(day.flight){
-      var f=day.flight;
-      out+="<div class='card'>"
-          +"<div class='card-hd' onclick=\"tg('flight')\">"
-          +"<div class='card-lbl'><div class='card-icon' style='background:#EFF6FF'>\u2708\uFE0F</div>"
-          +"<div><div class='card-title'>Flight</div>"
-          +"<div class='card-sub'>"+f.num+" &nbsp;\u00b7&nbsp; Conf: "+f.conf+"</div></div></div>"
-          +"<div class='chev"+(OPEN.flight?" open":"")+"'>\u25b6</div></div>";
-      if(OPEN.flight){
-        out+="<div class='card-body'>"
-            +"<div class='flt-grid'>"
-            +"<div class='flt-side'>"
-            +"<div class='flt-apt'>"+f.depApt+"</div>"
-            +"<div class='flt-city'>"+f.depCity+"</div>"
-            +"<div class='flt-time'>"+f.dep+"</div>"
-            +"<div class='flt-date'>Jul 14</div>"
-            +"</div>"
-            +"<div class='flt-mid'>"
-            +"<div class='flt-line'><div class='flt-dash'></div><div class='flt-plane'>\u2708</div><div class='flt-dash'></div></div>"
-            +"<div class='flt-carrier'>Southwest</div>"
-            +"</div>"
-            +"<div class='flt-side right'>"
-            +"<div class='flt-apt'>"+f.arrApt+"</div>"
-            +"<div class='flt-city'>"+f.arrCity+"</div>"
-            +"<div class='flt-time'>"+f.arr+"</div>"
-            +"<div class='flt-date'>Jul 14</div>"
-            +"</div></div>"
-            +"<div class='flt-meta'>"
-            +"<div class='flt-meta-cell'><div class='flt-mlabel'>Flight</div><div class='flt-mval'>"+f.num+"</div></div>"
-            +"<div class='flt-meta-cell'><div class='flt-mlabel'>Confirmation</div><div class='flt-mval'>"+f.conf+"</div></div>"
-            +"</div></div>";
-      }
-      out+="</div>";
-    }
-
-    // Itinerary card
-    out+="<div class='card'>"
-        +"<div class='card-hd' onclick=\"tg('itin')\">"
-        +"<div class='card-lbl'><div class='card-icon' style='background:#EEF2FF'>\uD83D\uDCCB</div>"
-        +"<div><div class='card-title'>Day Plan</div><div class='card-sub'>"+day.itin.length+" stops</div></div></div>"
-        +"<div class='chev"+(OPEN.itin?" open":"")+"'>\u25b6</div></div>";
-    if(OPEN.itin){
-      out+="<div class='card-body'>";
-      for(var j=0;j<day.itin.length;j++){
-        var it=day.itin[j];
-        out+="<div class='t-row'><div class='t-time'>"+it.t+"</div>"
-            +"<div class='t-text'>"+it.x+(it.crit?"<span class='crit'>"+it.crit+"</span>":"")+"</div></div>";
-      }
-      out+="</div>";
-    }
-    out+="</div>";
-
-    // Full details / strategy card
-    if(day.strategy){
-      out+="<div class='card'>"
-          +"<div class='card-hd' onclick=\"tg('details')\">"
-          +"<div class='card-lbl'><div class='card-icon' style='background:#F0FDF4'>\uD83D\uDCDD</div>"
-          +"<div><div class='card-title'>Full Strategy &amp; Notes</div><div class='card-sub'>Tap to expand</div></div></div>"
-          +"<div class='chev"+(OPEN.details?" open":"")+"'>\u25b6</div></div>";
-      if(OPEN.details){
-        var paras=day.strategy.split("\n\n");
-        out+="<div class='card-body'><div class='detail-block'>";
-        for(var p=0;p<paras.length;p++) out+="<p>"+paras[p]+"</p>";
-        out+="</div></div>";
-      }
-      out+="</div>";
-    }
-
-    // LL card
-    if(day.ll.length>0){
-      out+="<div class='card'>"
-          +"<div class='card-hd' onclick=\"tg('ll')\">"
-          +"<div class='card-lbl'><div class='card-icon' style='background:#FEF3C7'>\u26a1</div>"
-          +"<div><div class='card-title'>Lightning Lanes</div><div class='card-sub'>"+day.ll.length+" pre-booked \u00b7 "+day.roll.length+" rolling</div></div></div>"
-          +"<div class='chev"+(OPEN.ll?" open":"")+"'>\u25b6</div></div>";
-      if(OPEN.ll){
-        out+="<div class='card-body'>";
-        for(var j=0;j<day.ll.length;j++){
-          var ll=day.ll[j];
-          out+="<div class='ll-row'>"
-              +"<div class='ll-top'><div class='ll-ride'>"+ll.r+"</div><div class='ll-tag "+tagCls(ll.ty)+"'>"+tagLbl(ll.ty)+"</div></div>"
-              +"<div class='ll-win'>Window: "+ll.w+"</div>"
-              +"<div class='ll-bd'>Book: "+ll.bd+"</div></div>";
-        }
-        if(day.roll.length>0){
-          out+="<div class='roll-hd'>Rolling Re-books</div>";
-          for(var j=0;j<day.roll.length;j++) out+="<div class='roll-row'>"+day.roll[j]+"</div>";
-        }
-        out+="</div>";
-      }
-      out+="</div>";
-    }
-
-    // Dining Plan card
-    if(day.din.length>0){
-      out+="<div class='card'>"
-          +"<div class='card-hd' onclick=\"tg('din')\">"
-          +"<div class='card-lbl'><div class='card-icon' style='background:#FEF2F2'>\uD83C\uDF7D</div>"
-          +"<div><div class='card-title'>Dining Plan</div><div class='card-sub'>"+day.din.length+" in plan</div></div></div>"
-          +"<div class='chev"+(OPEN.din?" open":"")+"'>\u25b6</div></div>";
-      if(OPEN.din){
-        out+="<div class='card-body'>";
-        for(var j=0;j<day.din.length;j++){
-          var d2=day.din[j];
-          out+="<div class='din-row'><div class='meal'>"+d2.m+"</div>"
-              +"<div style='flex:1'><div class='din-name'>"+d2.n+"</div><div class='din-time'>"+d2.t+"</div></div>"
-              +(d2.loc?"<div style='font-size:12px;font-weight:700;color:#fff;background:#6B7280;padding:3px 8px;border-radius:8px;white-space:nowrap;align-self:center'>"+d2.loc+"</div>":"")
-              +"</div>";
-        }
-        out+="</div>";
-      }
-      out+="</div>";
-    }
-
-    // Night shows card
-    if(day.shows.length>0){
-      out+="<div class='card'>"
-          +"<div class='card-hd' onclick=\"tg('shows')\">"
-          +"<div class='card-lbl'><div class='card-icon' style='background:#F3E8FF'>\u2728</div>"
-          +"<div><div class='card-title'>Night Shows</div><div class='card-sub'>"+day.shows.length+" show"+(day.shows.length>1?"s":"")+"</div></div></div>"
-          +"<div class='chev"+(OPEN.shows?" open":"")+"'>\u25b6</div></div>";
-      if(OPEN.shows){
-        out+="<div class='card-body'>";
-        for(var j=0;j<day.shows.length;j++){
-          var sh=day.shows[j];
-          out+="<div class='show-row'><div class='show-name'>"+sh.n+"</div><div class='show-time'>"+sh.t+"</div></div>";
-        }
-        out+="</div>";
-      }
-      out+="</div>";
-    }
-
-  } else if(TAB==="schedule"){
-    // ── PARK RESERVATIONS ────────────────────────────────────────────
-    out+="<div class='pg-title'>Trip Schedule</div><div class='pg-sub'>Park reservations \u00b7 dining plan \u00b7 all days</div>";
-    out+="<div class='llp-card'>"
-        +"<div class='llp-hd' style='background:var(--ink)'>"
-        +"<div style='font-size:18px'>\uD83C\uDFAB</div>"
-        +"<div class='llp-name' style='color:#fff'>Park Reservations</div></div>"
-        +"<div style='border-top:1px solid var(--border)'>";
-    for(var i=0;i<DAYS.length;i++){
-      var d=DAYS[i], rp=PARKS[d.res];
-      out+="<div class='din-row'>"
-          +"<div style='display:flex;align-items:center;gap:8px;min-width:110px'>"
-          +"<div style='width:12px;height:12px;border-radius:50%;background:"+rp.color+";flex-shrink:0'></div>"
-          +"<div style='font-size:14px;font-weight:700;color:var(--ink)'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>"
-          +"<div><div class='din-name' style='color:"+rp.color+";font-weight:700'>"+rp.name+"</div>"
-          +"<div class='din-time'>Confirmed</div></div></div>";
-    }
-    out+="</div></div>";
-
-    // ── DINING PLAN ──────────────────────────────────────────────────
-    out+="<div class='llp-card'>"
-        +"<div class='llp-hd' style='background:#92400E'>"
-        +"<div style='font-size:18px'>\uD83C\uDF7D</div>"
-        +"<div class='llp-name' style='color:#fff'>Dining Plan</div></div>"
-        +"<div style='border-top:1px solid var(--border)'>";
-    for(var i=0;i<DAYS.length;i++){
-      var d=DAYS[i];
-      if(d.din.length===0) continue;
-      var rp=PARKS[d.res];
-      out+="<div class='sch-day-hd' style='background:"+rp.color+"'>"
-          +"<div class='sch-day-name' style='color:#fff'>"+rp.name+"</div>"
-          +"<div class='sch-day-date' style='color:rgba(255,255,255,.85)'>Jul "+d.date+" \u00b7 "+d.dl+"</div></div>";
-      for(var j=0;j<d.din.length;j++){
-        var dn=d.din[j];
-        out+="<div class='din-row'>"
-            +"<div class='meal'>"+dn.m+"</div>"
-            +"<div style='flex:1'><div class='din-name'>"+dn.n+"</div>"
-            +"<div class='din-time'>"+dn.t+"</div></div>"
-            +(dn.loc?"<div style='font-size:12px;font-weight:700;color:#fff;background:#6B7280;padding:3px 8px;border-radius:8px;white-space:nowrap;align-self:center'>"+dn.loc+"</div>":"")
-            +"</div>";
-      }
-    }
-    out+="</div></div>";
-
-  } else if(TAB==="ll"){
-    out+="<div class='pg-title'>Lightning Lane Strategy</div><div class='pg-sub'>Pre-book dates \u00b7 rolling re-books \u00b7 all parks</div>";
-    for(var pi=0;pi<LL_PARKS.length;pi++){
-      var lp=LL_PARKS[pi];
-      out+="<div class='llp-card'>"
-          +"<div class='llp-hd' style='background:"+lp.clr+"'>"
-          +"<div class='llp-name' style='color:#fff;font-size:17px'>"+lp.nm+"</div>"
-          +"<div class='llp-bd' style='color:rgba(255,255,255,.85)'>"+lp.bd+"</div></div>"
-          +"<div style='border-top:1px solid var(--border)'>";
-      for(var j=0;j<lp.items.length;j++){
-        var it=lp.items[j];
-        out+="<div class='ll-row'>"
-            +"<div class='ll-top'><div class='ll-ride'>"+it.r+"</div><div class='ll-tag "+tagCls(it.ty)+"'>"+tagLbl(it.ty)+"</div></div>"
-            +"<div class='ll-win'>Window: "+it.w+"</div></div>";
-      }
-      if(lp.roll.length>0){
-        out+="<div class='roll-hd'>Rolling Re-books</div>";
-        for(var j=0;j<lp.roll.length;j++) out+="<div class='roll-row'>"+lp.roll[j]+"</div>";
-      }
-      out+="</div></div>";
-    }
-
-  } else if(TAB==="planning"){
-    out+="<div class='seg'>"
-        +"<button class='seg-btn"+(PLAN==="packing"?" on":"")+"' onclick=\"sp('packing')\">Packing List</button>"
-        +"<button class='seg-btn"+(PLAN==="todo"?" on":"")+"' onclick=\"sp('todo')\">To Do</button>"
-        +"</div>";
-
-    if(PLAN==="packing"){
-      out+="<div class='plan-hdr'>"
-          +"<div style='font-size:13px;color:var(--muted)'>"+PKDATA.reduce(function(a,c){return a+c.items.filter(function(x){return x.done;}).length;},0)+" of "+PKDATA.reduce(function(a,c){return a+c.items.length;},0)+" packed</div>"
-          +"<div style='display:flex;gap:10px;align-items:center'>"
-          +"<button class='reset-lnk' onclick='pk_save_template()' style='color:var(--ep)'>Save as Template</button>"
-          +"<button class='reset-lnk' onclick='pk_reset()'>Reset</button>"
-          +"</div></div>";
-      for(var c=0;c<PKDATA.length;c++){
-        var cat=PKDATA[c];
-        out+="<div class='card'><div class='pack-cat'>"+cat.cat+"</div>";
-        for(var j=0;j<cat.items.length;j++){
-          var it=cat.items[j];
-          var cc=c, jj=j;
-          out+="<div class='pk-row' style='cursor:default'>"
-              +"<div class='chkbox"+(it.done?" on":"")+"' onclick=\"pk_chk("+c+","+j+")\" style='cursor:pointer'>"+(it.done?"\u2713":"")+"</div>"
-              +"<div class='pk-name"+(it.done?" done":"")+"' onclick=\"pk_chk("+c+","+j+")\" style='cursor:pointer;flex:1'>"+it.n+"</div>";
-          if(it.l){
-            out+="<div class='lkr'>\uD83D\uDD12 Locker</div>";
-          } else {
-            out+="<div class='qty-wrap'>"
-                +"<button class='qty-btn' onclick=\"pk_dec("+c+","+j+")\">&#x2212;</button>"
-                +"<span class='qty-num'>"+it.qty+"</span>"
-                +"<button class='qty-btn' onclick=\"pk_inc("+c+","+j+")\">+</button>"
-                +"</div>";
-          }
-          out+="<button class='del-btn' onclick=\"pk_del("+c+","+j+")\">\u00d7</button>"
-              +"</div>";
-        }
-        if(ADDING_CAT===c){
-          out+="<div class='add-row'>"
-              +"<input id='pk-inp' class='add-inp' placeholder='Item name...' onkeydown=\"pk_inp_key(event,"+c+")\">"
-              +"<button class='add-ok' onclick=\"pk_ok("+c+")\"'>Add</button>"
-              +"<button class='add-cancel' onclick='pk_cancel()'>\u00d7</button>"
-              +"</div>";
-        } else {
-          out+="<button class='add-link' onclick=\"pk_add("+c+")\">+ Add item</button>";
-        }
-        out+="</div>";
-      }
-
-    } else {
-      var tdDone=TDDATA.filter(function(t){return t.done;}).length;
-      var tdTotal=TDDATA.filter(function(t){return !t.na;}).length;
-      out+="<div class='plan-hdr'>"
-          +"<div style='font-size:13px;color:var(--muted)'>"+tdDone+" of "+tdTotal+" complete</div>"
-          +"<div style='display:flex;gap:10px;align-items:center'>"
-          +"<button class='reset-lnk' onclick='td_save_template()' style='color:var(--ep)'>Save as Template</button>"
-          +"<button class='reset-lnk' onclick='td_reset()'>Reset</button>"
-          +"</div></div>";
-      out+="<div class='card'>";
-      for(var j=0;j<TDDATA.length;j++){
-        var td=TDDATA[j];
-        out+="<div class='pk-row' style='cursor:default;gap:10px'>"
-            +"<div class='chkbox"+(td.done?" on":td.na?" on":"")+"' onclick=\"td_chk("+j+")\" style='cursor:"+(td.na?"default":"pointer")+";flex-shrink:0'>"+(td.done?"\u2713":td.na?"\u2014":"")+"</div>"
-            +"<div class='pk-name"+(td.done?" done":"")+"' onclick=\"td_chk("+j+")\" style='cursor:"+(td.na?"default":"pointer")+";flex:1;opacity:"+(td.na?".45":"1")+"'>"+td.n+"</div>"
-            +(td.when?"<div class='td-when'>"+td.when+"</div>":"")
-            +"<button onclick=\"td_na("+j+")\" style='font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:"+(td.na?"#E5E1D8":"var(--cream)")+";color:var(--muted);border:1px solid var(--border);cursor:pointer;flex-shrink:0'>N/A</button>"
-            +"<button class='del-btn' onclick=\"td_del("+j+")\">\u00d7</button>"
-            +"</div>";
-      }
-      if(ADDING_TODO){
-        out+="<div class='add-row'>"
-            +"<input id='td-inp' class='add-inp' placeholder='Task name...' onkeydown='td_inp_key(event)'>"
-            +"<button class='add-ok' onclick='td_ok()'>Add</button>"
-            +"<button class='add-cancel' onclick='td_cancel()'>\u00d7</button>"
-            +"</div>";
-      } else {
-        out+="<button class='add-link' onclick='td_add()'>+ Add task</button>";
-      }
-      out+="</div>";
-    }
+    o+='</div>';
   }
 
-  document.getElementById("app").innerHTML="<div class='content'>"+out+"</div>";
+  // Day Plan card
+  var nextIdx=getNextUpIdx(day);
+  var summary=day.strategy?firstSentence(day.strategy):null;
+  var hasLL=day.ll&&day.ll.length>0;
+  o+='<div class="card">';
+  o+='<div class="card-hd" onclick="tg(\'itin\')">';
+  o+='<div class="card-lbl"><div class="card-icon" style="background:#EEF2FF;color:#4338CA">'+IC.route+'</div>';
+  o+='<div><div class="card-title">Day Plan</div><div class="card-sub">'+day.itin.length+' stops</div></div></div>';
+  o+='<div class="chev'+(OPEN.itin?' open':'')+'">' +IC.chev+'</div></div>';
+  if(OPEN.itin){
+    o+='<div class="card-body">';
+    if(summary) o+='<div class="plan-summary"><strong>The plan:</strong> '+summary+'</div>';
+    for(var j=0;j<day.itin.length;j++){
+      var it=day.itin[j],isNext=(j===nextIdx),isFlight=isFlightRow(it);
+      o+='<div class="t-row'+(isNext?' nextup':'')+'">';
+      o+='<div class="t-time">'+it.t+'</div>';
+      o+='<div style="flex:1"><div class="t-text">'+it.x+'</div>';
+      var tags=[];
+      if(isNext) tags.push('<span class="t-tag t-tag-next">'+IC.arr+' Next up</span>');
+      if(isFlight) tags.push('<span class="t-tag t-tag-flight">'+IC.plxs+' Flight</span>');
+      if(it.crit&&!isFlightRow(it)) tags.push('<span class="t-tag t-tag-crit">'+it.crit+'</span>');
+      if(tags.length) o+='<div class="t-tags">'+tags.join('')+'</div>';
+      o+='</div></div>';
+    }
+    // Compact LL legend
+    if(hasLL){
+      o+='<div class="ll-legend">';
+      o+='<div class="ll-legend-item"><span class="ll-tag sp">SP</span> Single Pass</div>';
+      o+='<div class="ll-legend-item"><span class="ll-tag mp1">T1</span> Multi Pass T1</div>';
+      o+='<div class="ll-legend-item"><span class="ll-tag mp2">T2</span> Multi Pass T2</div>';
+      o+='</div>';
+    }
+    o+='</div>';
+  }
+  o+='</div>';
 
-  // Nav
+  // Lightning Lanes card
+  if(hasLL){
+    o+='<div class="card">';
+    o+='<div class="card-hd" onclick="tg(\'ll\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:#FEF3C7;color:#92400E">'+IC.bolt+'</div>';
+    o+='<div><div class="card-title">Lightning Lanes</div><div class="card-sub">'+day.ll.length+' pre-booked &middot; '+day.roll.length+' rolling</div></div></div>';
+    o+='<div class="chev'+(OPEN.ll?' open':'')+'">' +IC.chev+'</div></div>';
+    if(OPEN.ll){
+      o+='<div class="card-body">';
+      for(var j=0;j<day.ll.length;j++){
+        var ll=day.ll[j];
+        o+='<div class="ll-row">';
+        o+='<div class="ll-top"><div class="ll-ride">'+ll.r+'</div><span class="ll-tag '+tagCls(ll.ty)+'">'+tagLbl(ll.ty)+'</span></div>';
+        o+='<div class="ll-win">Window: '+ll.w+'</div>';
+        o+='<div class="ll-bd">Book: '+ll.bd+'</div>';
+        o+='</div>';
+      }
+      if(day.roll.length>0){
+        o+='<div class="roll-hd">Rolling Re-books</div>';
+        for(var j=0;j<day.roll.length;j++) o+='<div class="roll-row"><span class="roll-arr">'+IC.arr+'</span>'+day.roll[j]+'</div>';
+      }
+      o+='</div>';
+    }
+    o+='</div>';
+  }
+
+  // Strategy card
+  if(day.strategy){
+    o+='<div class="card">';
+    o+='<div class="card-hd" onclick="tg(\'details\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:#F0FDF4;color:#166534">'+IC.book+'</div>';
+    o+='<div><div class="card-title">Full Strategy &amp; Notes</div><div class="card-sub">Tap to read</div></div></div>';
+    o+='<div class="chev'+(OPEN.details?' open':'')+'">' +IC.chev+'</div></div>';
+    if(OPEN.details){
+      var ps=day.strategy.split('\n\n');
+      o+='<div class="card-body"><div class="strategy-body">';
+      for(var p=0;p<ps.length;p++) o+='<p>'+ps[p]+'</p>';
+      o+='</div></div>';
+    }
+    o+='</div>';
+  }
+
+  // Dining card
+  if(day.din&&day.din.length>0){
+    o+='<div class="card">';
+    o+='<div class="card-hd" onclick="tg(\'din\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:#FEF2F2;color:#991B1B">'+IC.fork+'</div>';
+    o+='<div><div class="card-title">Dining</div><div class="card-sub">'+day.din.length+' in plan</div></div></div>';
+    o+='<div class="chev'+(OPEN.din?' open':'')+'">' +IC.chev+'</div></div>';
+    if(OPEN.din){
+      o+='<div class="card-body">';
+      for(var j=0;j<day.din.length;j++){
+        var dn=day.din[j];
+        o+='<div class="din-row"><div class="meal">'+dn.m+'</div>';
+        o+='<div style="flex:1"><div class="din-name">'+dn.n+'</div><div class="din-time">'+dn.t+'</div></div>';
+        if(dn.loc) o+='<span class="nonpark-badge">'+dn.loc+'</span>';
+        o+='</div>';
+      }
+      o+='</div>';
+    }
+    o+='</div>';
+  }
+
+  // Shows card
+  if(day.shows&&day.shows.length>0){
+    o+='<div class="card">';
+    o+='<div class="card-hd" onclick="tg(\'shows\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:#F3E8FF;color:#6B21A8">'+IC.star+'</div>';
+    o+='<div><div class="card-title">Night Shows</div><div class="card-sub">'+day.shows.length+' show'+(day.shows.length>1?'s':'')+'</div></div></div>';
+    o+='<div class="chev'+(OPEN.shows?' open':'')+'">' +IC.chev+'</div></div>';
+    if(OPEN.shows){
+      o+='<div class="card-body">';
+      for(var j=0;j<day.shows.length;j++){
+        var sh=day.shows[j];
+        o+='<div class="show-row"><div class="show-name">'+sh.n+'</div><div class="show-time">'+sh.t+'</div></div>';
+      }
+      o+='</div>';
+    }
+    o+='</div>';
+  }
+
+  return o;
+}
+
+// ── RENDER SCHEDULE ───────────────────────────────────────────────────
+function renderSchedule(){
+  var o='';
+  o+='<div class="pg-title">Trip Schedule</div>';
+  o+='<div class="pg-sub">Park reservations &middot; all dining</div>';
+
+  // Park Reservations
+  o+='<div class="sch-card">';
+  o+='<div class="sch-card-hd" style="background:var(--ink)">';
+  o+='<div style="color:#fff">'+IC.ticket+'</div>';
+  o+='<div class="llp-name" style="color:#fff">Park Reservations</div></div>';
+  o+='<div>';
+  for(var i=0;i<DAYS.length;i++){
+    var d=DAYS[i],rp=PARKS[d.res];
+    o+='<div class="din-row">';
+    o+='<div style="display:flex;align-items:center;gap:8px;flex:1">';
+    o+='<div style="width:10px;height:10px;border-radius:50%;background:'+rp.color+';flex-shrink:0"></div>';
+    o+='<div><div style="font-size:13px;font-weight:700;color:'+rp.color+'">'+rp.name+'</div>';
+    o+='<div style="font-size:11px;color:var(--muted)">Jul '+d.date+' &middot; '+d.dl+'</div></div></div>';
+    o+='<div style="display:flex;align-items:center;gap:4px;font-size:11px;color:#16a34a;font-weight:700">'+IC.check+' Confirmed</div>';
+    o+='</div>';
+  }
+  o+='</div></div>';
+
+  // Dining Plan
+  o+='<div class="sch-card">';
+  o+='<div class="sch-card-hd" style="background:#7C2D12">';
+  o+='<div style="color:#fff">'+IC.fork+'</div>';
+  o+='<div class="llp-name" style="color:#fff">Dining Plan</div></div>';
+  for(var i=0;i<DAYS.length;i++){
+    var d=DAYS[i];
+    if(!d.din||d.din.length===0)continue;
+    var rp=PARKS[d.res];
+    o+='<div class="sch-day-hd" style="background:'+rp.color+'">';
+    o+='<div class="sch-day-name" style="color:#fff">'+rp.name+'</div>';
+    o+='<div class="sch-day-date" style="color:rgba(255,255,255,.8)">Jul '+d.date+' &middot; '+d.dl+'</div></div>';
+    for(var j=0;j<d.din.length;j++){
+      var dn=d.din[j];
+      o+='<div class="din-row"><div class="meal">'+dn.m+'</div>';
+      o+='<div style="flex:1"><div class="din-name">'+dn.n+'</div><div class="din-time">'+dn.t+'</div></div>';
+      if(dn.loc) o+='<span class="nonpark-badge">'+dn.loc+'</span>';
+      o+='</div>';
+    }
+  }
+  o+='</div>';
+  return o;
+}
+
+// ── RENDER LIGHTNING ──────────────────────────────────────────────────
+function renderLL(){
+  var o='';
+  o+='<div class="pg-title">Lightning Lane Strategy</div>';
+  o+='<div class="pg-sub">Pre-book dates &middot; rolling re-books &middot; all parks</div>';
+
+  // Full legend
+  o+='<div class="llp-card"><div class="ll-full-legend">';
+  o+='<h3>How It Works</h3>';
+  o+='<div class="llfl-item"><span class="ll-tag sp" style="flex-shrink:0">SP</span><div><strong>Single Pass</strong> — One premium LL per day per person. Book at 7 AM on park day. Highest-demand attractions only.</div></div>';
+  o+='<div class="llfl-item"><span class="ll-tag mp1" style="flex-shrink:0">T1</span><div><strong>Multi Pass T1</strong> — Top-tier MP rides. Book at 7 AM. Scan immediately, then book the next LL.</div></div>';
+  o+='<div class="llfl-item"><span class="ll-tag mp2" style="flex-shrink:0">T2</span><div><strong>Multi Pass T2</strong> — Standard MP rides. Same rolling re-book engine — each scan unlocks the next booking.</div></div>';
+  o+='<div class="llfl-item"><span style="color:var(--gold);font-weight:700;flex-shrink:0;padding:3px 5px 3px 0">'+IC.arr+'</span><div><strong>Rolling Re-books</strong> — After scanning each Multi Pass LL, immediately book the next. Stack across the morning to minimize waits and maximize rides.</div></div>';
+  o+='</div></div>';
+
+  for(var pi=0;pi<LL_PARKS.length;pi++){
+    var lp=LL_PARKS[pi];
+    o+='<div class="llp-card"><div class="llp-hd" style="background:'+lp.clr+'">';
+    o+='<div class="llp-name" style="color:#fff">'+lp.nm+'</div>';
+    o+='<div class="llp-book" style="color:rgba(255,255,255,.85)">'+lp.bd+'</div></div>';
+    o+='<div style="border-top:1px solid var(--border)">';
+    for(var j=0;j<lp.items.length;j++){
+      var it=lp.items[j];
+      o+='<div class="ll-row"><div class="ll-top"><div class="ll-ride">'+it.r+'</div><span class="ll-tag '+tagCls(it.ty)+'">'+tagLbl(it.ty)+'</span></div>';
+      o+='<div class="ll-win">Window: '+it.w+'</div></div>';
+    }
+    if(lp.roll.length>0){
+      o+='<div class="roll-hd">Rolling Re-books</div>';
+      for(var j=0;j<lp.roll.length;j++) o+='<div class="roll-row"><span class="roll-arr">'+IC.arr+'</span>'+lp.roll[j]+'</div>';
+    }
+    o+='</div></div>';
+  }
+  return o;
+}
+
+// ── RENDER PLANNING ───────────────────────────────────────────────────
+function renderPlanning(){
+  var pkDone=PKDATA.reduce(function(a,c){return a+c.items.filter(function(x){return x.done;}).length;},0);
+  var pkTotal=PKDATA.reduce(function(a,c){return a+c.items.length;},0);
+  var tdDone=TDDATA.filter(function(t){return t.done;}).length;
+  var tdTotal=TDDATA.filter(function(t){return !t.na;}).length;
+  var done=PLAN==='packing'?pkDone:tdDone;
+  var total=PLAN==='packing'?pkTotal:tdTotal;
+  var pct=total>0?Math.round(done/total*100):0;
+  var o='';
+
+  // Sticky header
+  o+='<div class="plan-sticky">';
+  o+='<div class="seg">';
+  o+='<button class="seg-btn'+(PLAN==='packing'?' on':'')+'" onclick="sp(\'packing\')">Packing List</button>';
+  o+='<button class="seg-btn'+(PLAN==='todo'?' on':'')+'" onclick="sp(\'todo\')">To Do</button>';
+  o+='</div>';
+  o+='<div class="prog-label">'+done+' of '+total+(PLAN==='packing'?' packed':' done')+'</div>';
+  o+='<div class="prog-outer"><div class="prog-inner" style="width:'+pct+'%"></div></div>';
+  o+='<div class="prog-actions">';
+  if(PLAN==='packing'){
+    o+='<button class="prog-btn blu" onclick="pk_save_template()">Save as Template</button>';
+    o+='<button class="prog-btn" onclick="pk_reset()">Reset</button>';
+  }else{
+    o+='<button class="prog-btn blu" onclick="td_save_template()">Save as Template</button>';
+    o+='<button class="prog-btn" onclick="td_reset()">Reset</button>';
+  }
+  o+='</div></div>';
+
+  if(PLAN==='packing'){
+    for(var c=0;c<PKDATA.length;c++){
+      var cat=PKDATA[c];
+      var catDone=cat.items.filter(function(x){return x.done;}).length;
+      o+='<div class="card">';
+      o+='<div class="cat-hdr"><div class="cat-name">'+cat.cat+'</div><div class="cat-count">'+catDone+'/'+cat.items.length+'</div></div>';
+      for(var j=0;j<cat.items.length;j++){
+        var it=cat.items[j],k=c+'-'+j,isPend=DEL_PK[k];
+        o+='<div class="pk-row">';
+        o+='<div class="chkbox'+(it.done?' on':'')+'" onclick="pk_chk('+c+','+j+')">'+(it.done?IC.checkw:'')+'</div>';
+        o+='<div class="pk-name'+(it.done?' done':'')+'" onclick="pk_chk('+c+','+j+')">'+it.n+'</div>';
+        if(it.l){
+          o+='<span class="lkr-tag">Locker</span>';
+        }else{
+          o+='<div class="qty-wrap">';
+          o+='<button class="qty-btn" onclick="pk_dec('+c+','+j+')">&#x2212;</button>';
+          o+='<span class="qty-num">'+it.qty+'</span>';
+          o+='<button class="qty-btn" onclick="pk_inc('+c+','+j+')">+</button>';
+          o+='</div>';
+        }
+        if(isPend){
+          o+='<button class="del-confirm-btn" onclick="pk_del('+c+','+j+')">Remove?</button>';
+        }else{
+          o+='<button class="del-btn" onclick="pk_del('+c+','+j+')">&#xd7;</button>';
+        }
+        o+='</div>';
+      }
+      if(ADDING_CAT===c){
+        o+='<div class="add-row"><input id="pk-inp" class="add-inp" placeholder="Item name..." onkeydown="pk_inp_key(event,'+c+')">';
+        o+='<button class="add-ok" onclick="pk_ok('+c+')">Add</button>';
+        o+='<button class="add-cancel" onclick="pk_cancel()">&#xd7;</button></div>';
+      }else{
+        o+='<button class="add-link" onclick="pk_add('+c+')">+ Add item</button>';
+      }
+      o+='</div>';
+    }
+  }else{
+    o+='<div class="card">';
+    for(var j=0;j<TDDATA.length;j++){
+      var td=TDDATA[j],isPend=DEL_TD[j];
+      o+='<div class="pk-row" style="gap:8px">';
+      o+='<div class="chkbox'+(td.done||td.na?' on':'')+'" onclick="td_chk('+j+')" style="cursor:'+(td.na?'default':'pointer')+'">'+(td.done?IC.checkw:td.na?'&ndash;':'')+'</div>';
+      o+='<div class="pk-name'+(td.done?' done':'')+'" onclick="td_chk('+j+')" style="cursor:'+(td.na?'default':'pointer')+';opacity:'+(td.na?'.4':'1')+'">'+td.n+'</div>';
+      if(td.when) o+='<div class="td-when">'+td.when+'</div>';
+      o+='<button onclick="td_na('+j+')" class="na-btn'+(td.na?' active':'')+'">N/A</button>';
+      if(isPend){
+        o+='<button class="del-confirm-btn" onclick="td_del('+j+')">Remove?</button>';
+      }else{
+        o+='<button class="del-btn" onclick="td_del('+j+')">&#xd7;</button>';
+      }
+      o+='</div>';
+    }
+    if(ADDING_TODO){
+      o+='<div class="add-row"><input id="td-inp" class="add-inp" placeholder="Task name..." onkeydown="td_inp_key(event)">';
+      o+='<button class="add-ok" onclick="td_ok()">Add</button>';
+      o+='<button class="add-cancel" onclick="td_cancel()">&#xd7;</button></div>';
+    }else{
+      o+='<button class="add-link" onclick="td_add()">+ Add task</button>';
+    }
+    o+='</div>';
+  }
+  return o;
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────
+function renderNav(){
   var tabs=[
-    {id:"days",     ic:"\uD83D\uDDD3", lb:"Days"},
-    {id:"schedule", ic:"\uD83D\uDCCB", lb:"Schedule"},
-    {id:"ll",       ic:"\u26A1",       lb:"Lightning"},
-    {id:"planning", ic:"\uD83D\uDCDD", lb:"Planning"}
+    {id:'days',     ic:IC.calendar,  lb:'Days'},
+    {id:'schedule', ic:IC.list,      lb:'Schedule'},
+    {id:'ll',       ic:IC.zap,       lb:'Lightning'},
+    {id:'planning', ic:IC.checksq,   lb:'Planning'}
   ];
-  var nav="<nav class='bnav'>";
+  var h='';
   for(var i=0;i<tabs.length;i++){
-    var t=tabs[i];
-    nav+="<button class='nbtn"+(TAB===t.id?" on":"")+"' onclick=\"st('"+t.id+"')\">"
-        +"<div class='nicon'>"+t.ic+"</div><div>"+t.lb+"</div>"
-        +(TAB===t.id?"<div class='ndot'></div>":"<div class='nspc'></div>")
-        +"</button>";
+    var t=tabs[i],on=TAB===t.id;
+    h+='<button class="nbtn'+(on?' on':'')+'" onclick="st(\''+t.id+'\')">'+t.ic+'<span>'+t.lb+'</span>'+(on?'<div class="nbtn-dot"></div>':'')+'</button>';
   }
-  nav+="</nav>";
-  var old=document.querySelector(".bnav");
-  if(old) old.remove();
-  document.body.insertAdjacentHTML("beforeend",nav);
+  document.getElementById('bnav').innerHTML=h;
+}
+
+// ── MAIN RENDER ───────────────────────────────────────────────────────
+function render(){
+  renderStrip();
+  var o='';
+  if(TAB==='days') o=renderDays();
+  else if(TAB==='schedule') o=renderSchedule();
+  else if(TAB==='ll') o=renderLL();
+  else o=renderPlanning();
+  document.getElementById('app').innerHTML=o;
+  renderNav();
 }
 
 render();
