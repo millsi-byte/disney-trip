@@ -191,6 +191,10 @@ html,body{margin:0;padding:0}body{font-family:'Inter',-apple-system,BlinkMacSyst
 .h-res{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;letter-spacing:.03em}
 .checkin-hotel{font-size:17px;font-weight:700;color:var(--ink);margin-top:3px}
 .checkin-res{font-size:14px;color:var(--gold);font-weight:700;margin-top:2px;letter-spacing:.02em}
+.card-hd-pk .card-title{color:#fff}
+.card-hd-pk .card-sub{color:rgba(255,255,255,.72)}
+.card-hd-pk .card-icon{background:rgba(255,255,255,.18)!important;color:#fff!important}
+.card-hd-pk .chev{color:rgba(255,255,255,.72)}
 /* Nav */
 .bnav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--cream);border-top:2px solid #B8B2A8;padding-bottom:env(safe-area-inset-bottom);z-index:200}
 .nbtn{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px 10px;cursor:pointer;color:#6B7280;font-size:11px;font-weight:600;letter-spacing:.04em;gap:3px;border:none;background:none;font-family:'Inter',sans-serif}
@@ -225,8 +229,8 @@ var PARKS = {
 // ── DAYS ─────────────────────────────────────────────────────────────
 var DAYS = [
   // Jul 14 TRAVEL
-  { date:"14", dl:"Tue", park:"trv",
-    badges:["Locker Delivered to Room","Activate APs"],
+  { date:"14", dl:"Tue", park:"ep",
+    badges:["Travel Day","Locker Delivered to Room","Activate APs"],
     alert:null,
     res:"ep", crowd:3, hours:"8:30 AM – 9:00 PM",
     flight:{num:"SW 4657 / 3658",conf:"CCSJ4H",dep:"5:45 AM",depApt:"BOS",depCity:"Boston",arr:"11:50 AM",arrApt:"MCO",arrCity:"Orlando"},
@@ -656,8 +660,8 @@ function renderDays(){
   if(day.flight){
     var f=day.flight;
     o+='<div class="card">';
-    o+='<div class="card-hd" onclick="tg(\'flight\')">';
-    o+='<div class="card-lbl"><div class="card-icon" style="background:#EFF6FF;color:#1E40AF">'+IC.plane+'</div>';
+    o+='<div class="card-hd card-hd-pk" style="background:#1B2B4A" onclick="tg(\'flight\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.plane+'</div>';
     o+='<div><div class="card-title">Flight</div><div class="card-sub">'+f.num+' &middot; '+f.conf+'</div></div></div>';
     o+='<div class="chev'+(OPEN.flight?' open':'')+'">' +IC.chev+'</div></div>';
     if(OPEN.flight){
@@ -678,8 +682,8 @@ function renderDays(){
   var summary=day.strategy?firstSentence(day.strategy):null;
   var hasLL=day.ll&&day.ll.length>0;
   o+='<div class="card">';
-  o+='<div class="card-hd" onclick="tg(\'itin\')">';
-  o+='<div class="card-lbl"><div class="card-icon" style="background:#EEF2FF;color:#4338CA">'+IC.route+'</div>';
+  o+='<div class="card-hd card-hd-pk" style="background:#0F5F73" onclick="tg(\'itin\')">';
+  o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.route+'</div>';
   o+='<div><div class="card-title">Day Plan</div><div class="card-sub">'+day.itin.length+' stops</div></div></div>';
   o+='<div class="chev'+(OPEN.itin?' open':'')+'">' +IC.chev+'</div></div>';
   if(OPEN.itin){
@@ -720,8 +724,8 @@ function renderDays(){
   // Lightning Lanes card
   if(hasLL){
     o+='<div class="card">';
-    o+='<div class="card-hd" onclick="tg(\'ll\')">';
-    o+='<div class="card-lbl"><div class="card-icon" style="background:#FEF3C7;color:#92400E">'+IC.bolt+'</div>';
+    o+='<div class="card-hd card-hd-pk" style="background:#92400E" onclick="tg(\'ll\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.bolt+'</div>';
     o+='<div><div class="card-title">Lightning Lanes</div><div class="card-sub">'+day.ll.length+' pre-booked &middot; '+day.roll.length+' rolling</div></div></div>';
     o+='<div class="chev'+(OPEN.ll?' open':'')+'">' +IC.chev+'</div></div>';
     if(OPEN.ll){
@@ -746,8 +750,8 @@ function renderDays(){
   // Strategy card
   if(day.strategy){
     o+='<div class="card">';
-    o+='<div class="card-hd" onclick="tg(\'details\')">';
-    o+='<div class="card-lbl"><div class="card-icon" style="background:#F0FDF4;color:#166534">'+IC.book+'</div>';
+    o+='<div class="card-hd card-hd-pk" style="background:#166534" onclick="tg(\'details\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.book+'</div>';
     o+='<div><div class="card-title">Full Strategy &amp; Notes</div><div class="card-sub">Tap to read</div></div></div>';
     o+='<div class="chev'+(OPEN.details?' open':'')+'">' +IC.chev+'</div></div>';
     if(OPEN.details){
@@ -762,8 +766,8 @@ function renderDays(){
   // Dining card
   if(day.din&&day.din.length>0){
     o+='<div class="card">';
-    o+='<div class="card-hd" onclick="tg(\'din\')">';
-    o+='<div class="card-lbl"><div class="card-icon" style="background:#FEF2F2;color:#991B1B">'+IC.fork+'</div>';
+    o+='<div class="card-hd card-hd-pk" style="background:#7C2D12" onclick="tg(\'din\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.fork+'</div>';
     o+='<div><div class="card-title">Dining</div><div class="card-sub">'+day.din.length+' in plan</div></div></div>';
     o+='<div class="chev'+(OPEN.din?' open':'')+'">' +IC.chev+'</div></div>';
     if(OPEN.din){
@@ -783,8 +787,8 @@ function renderDays(){
   // Shows card
   if(day.shows&&day.shows.length>0){
     o+='<div class="card">';
-    o+='<div class="card-hd" onclick="tg(\'shows\')">';
-    o+='<div class="card-lbl"><div class="card-icon" style="background:#F3E8FF;color:#6B21A8">'+IC.star+'</div>';
+    o+='<div class="card-hd card-hd-pk" style="background:#4C1D95" onclick="tg(\'shows\')">';
+    o+='<div class="card-lbl"><div class="card-icon" style="background:'+pk.color+';color:#fff">'+IC.star+'</div>';
     o+='<div><div class="card-title">Night Shows</div><div class="card-sub">'+day.shows.length+' show'+(day.shows.length>1?'s':'')+'</div></div></div>';
     o+='<div class="chev'+(OPEN.shows?' open':'')+'">' +IC.chev+'</div></div>';
     if(OPEN.shows){
