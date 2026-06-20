@@ -497,8 +497,7 @@ var DEL_PK={}, DEL_TD={};
 var OPEN={};
 
 function defaultOpen(day){
-  var isTRV=day.park==="trv", hasLL=day.ll&&day.ll.length>0;
-  return {flight:!!day.flight, itin:true, details:false, ll:hasLL&&!isTRV, din:false, shows:false};
+  return {flight:true, itin:true, details:true, ll:true, din:true, shows:true};
 }
 OPEN=defaultOpen(DAYS[0]);
 
