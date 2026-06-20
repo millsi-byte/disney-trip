@@ -807,8 +807,8 @@ function renderDays(){
 // ── RENDER SCHEDULE ───────────────────────────────────────────────────
 function renderSchedule(){
   var o='';
-  o+='<div class="pg-title">Trip Schedule</div>';
-  o+='<div class="pg-sub">Park reservations &middot; all dining</div>';
+  o+='<div class="pg-title">Reservations</div>';
+  o+='<div class="pg-sub">Park reservations &middot; dining plan</div>';
 
   // Park Reservations
   o+='<div class="sch-card">';
@@ -983,8 +983,8 @@ function renderPlanning(){
 // ── NAV ───────────────────────────────────────────────────────────────
 function renderNav(){
   var tabs=[
-    {id:'days',     ic:IC.calendar,  lb:'Days'},
-    {id:'schedule', ic:IC.list,      lb:'Schedule'},
+    {id:'days',     ic:IC.calendar,  lb:'Agenda'},
+    {id:'schedule', ic:IC.list,      lb:'Reservations'},
     {id:'ll',       ic:IC.zap,       lb:'Lightning'},
     {id:'planning', ic:IC.checksq,   lb:'Planning'}
   ];
